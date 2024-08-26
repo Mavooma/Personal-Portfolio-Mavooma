@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #c62d70; /* The background color matching the image */
+}
+
+header {
+    display: flex;
+    justify-content: space-between; /* Align items to the left */
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    margin-right: auto; /* Pushes the logo to the far right */
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.social-icons li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.social-icons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-icons img {
+    width: 24px;
+    height: 24px;
+}
+
+.hero {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.hero h1 {
+    font-size: 54px;
+    color: white;
+}
+
+.wave-emoji {
+    font-size: 1.2em;
+}
+
+.name {
+    font-weight: bold;
+    text-decoration: underline;
+    color: white;
+}
+
+.hero-image {
+    margin-top: 20px;
+    width: 450px; /* Adjust the size as needed */
+    border-radius: 50%; /* Optional: make the image circular */
+}
