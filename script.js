@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const nameElement = document.getElementById('name');
-    
+    const nameElement = document.querySelector('.name'); // Use querySelector for class
+
     let names = ['Vuyelwa', 'Mavooma'];
     let index = 0;
 
