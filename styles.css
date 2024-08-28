@@ -1,49 +1,80 @@
+/* General Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'proxima-nova', sans-serif;
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: #c62d70; /* The background color matching the image */
+    background-color: #c62d70; 
 }
 
-header {
+.section-divider {
+    border: 0;
+    height: 2px;
+    background-color: #e0e0e0; 
+    margin: 50px 0; 
+    opacity: 0.6; 
+}
+
+.highlighted-name {
+    display: inline-block; 
+    background-color: #800080; 
+    color: white; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    font-size: 24px; 
+}
+
+.cv-link {
+    color: #007bff; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 18px; 
+    padding: 5px 10px; 
+    background-color: #c7253e; 
+    border-radius: 5px; 
+}
+
+.cv-link:hover {
+    background-color: #e0a800; 
+    color: white; 
+    text-decoration: underline; 
+}
+
+/* Navbar Container */
+.navbar {
     display: flex;
-    justify-content: space-between; /* Align items to the left */
+    justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 10px 20px;
+    background-color: #e85c0d;
 }
 
-.logo {
-    font-size: 24px;
-    color: white;
+.navbar-brand {
+    font-size: 2em;
     font-weight: bold;
-    margin-right: auto; /* Pushes the logo to the far right */
+    color: white;
 }
 
-.social-icons {
+.navbar-links {
     display: flex;
-    gap: 15px;
-    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
 }
 
-.social-icons li {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+.navbar-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    padding: 8px 15px;
+    border-radius: 5px;
 }
 
-.social-icons a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.social-icons img {
-    width: 24px;
-    height: 24px;
+.navbar-links a:hover {
+    background-color: #c7253e;
 }
 
 .hero {
@@ -62,12 +93,342 @@ header {
 
 .name {
     font-weight: bold;
-    text-decoration: underline;
     color: white;
+    display: inline-block;
+    opacity: 0;
+    animation: fadeInOut 8s infinite;
 }
 
 .hero-image {
     margin-top: 20px;
-    width: 450px; /* Adjust the size as needed */
-    border-radius: 50%; /* Optional: make the image circular */
+    width: 100%;
+    max-width: 450px;
+    border-radius: 50%; 
+}
+
+.content-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #e85c0d;
+    border-radius: 8px; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.text-content {
+    flex: 1 1 45%;
+    padding-right: 20px;
+}
+
+.text-content h2 {
+    font-size: 3em;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.text-content p {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    line-height: 1.5em;
+}
+
+.image-content {
+    flex: 1 1 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-image {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 4px;
+}
+
+/* Education and Experience Section */
+.education-experience-section {
+    padding: 50px 20px;
+    background-color: #c62d70; 
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex; /* Flexbox layout */
+    justify-content: space-between; /* Space between Education and Experience sections */
+    gap: 20px; /* Space between Education and Experience sections */
+}
+
+.education, .experience {
+    flex: 1; /* Flex-grow equally to ensure both are same width */
+    background-color: #ffffff;
+    padding: 30px; /* Padding inside each section */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Shadow effect */
+    border: 5px solid #c62d70; /* Border matching theme */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-align items horizontally */
+    text-align: center; /* Center-align text */
+}
+
+.education h2, .experience h2 {
+    font-size: 2.5em; /* Larger font size for headers */
+    margin-bottom: 30px; /* Space below header */
+    color: white;
+    font-weight: bold;
+}
+
+.education p, .experience p {
+    font-size: 1.3em; /* Larger font size for readability */
+    color: #555; /* Softer dark gray */
+    line-height: 1.8; /* Space between lines */
+    margin-bottom: 20px; /* Space below each paragraph */
+    text-align: center; /* Center-align text */
+}
+
+.education-logo {
+    width: 120px; /* Logo width */
+    height: auto;
+    display: block; /* Display logo as block element */
+    margin: 10px auto; /* Center logo horizontally */
+}
+
+.experience-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    text-align: center; /* Center-align text */
+}
+
+.experience-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+}
+
+/* Projects Section Styles */
+.project-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid layout */
+    gap: 30px;
+    margin-top: 4rem; /* Adjusted margin top */
+    padding-bottom: 100px;
+}
+
+.project {
+    padding: 24px;
+    border: #c7253e;
+    border-radius: 20px;
+    text-align: center;
+    background-color: #e85c0d); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.project-title {
+    font-size: 5rem;
+    font-weight: bold;
+    margin-bottom: 1rem; /* Adds space below title */
+    color: white; /* Ensures readability */
+}
+
+.project-description {
+    font-size: 1rem;
+    margin-bottom: 1rem; /* Adds space below description */
+    color: var(--color-grey); /* Adds color for description */
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.project img {
+    border-radius: 30px;
+    margin-bottom: 1rem;
+    width: 100%; /* Makes images responsive */
+    height: auto;
+}
+
+/* Optional: Button Styles */
+.btn {
+    background-color: #c7253e; /* Primary button color */
+    color: white;
+    padding: 10px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.btn:hover {
+    background-color: #800080; /* Darker shade on hover */
+}
+
+/* Contact Me Section */
+.contact-me {
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #e85c0d;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.contact-me h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.contact-me form input[type="text"],
+.contact-me form input[type="email"],
+.contact-me form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.contact-me form textarea {
+    height: 150px;
+}
+
+.contact-me form button {
+    background: #c7253e;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-me form button:hover {
+    background-color: #800080;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #e85c0d; /* White background for the footer */
+    padding: 20px 0;
+    border-top: 1px solid #ddd; /* Light gray border at the top */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* Space between logo, nav, and social icons */
+    align-items: center; /* Vertically center the content */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Add padding on the sides */
+}
+
+.footer-content .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.footer-nav, .social-icons, .footer-bottom-nav {
+    display: flex;
+    gap: 20px; /* Space between each list item */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-nav a, .footer-bottom-nav a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer-nav a:hover, .footer-bottom-nav a:hover {
+    color: #c7253e; /* Add hover effect for links */
+}
+
+.social-icons li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px; /* Space between icons */
+    align-items: center;
+}
+
+.social-icons a {
+    display: flex; /* Use flexbox to align items */
+    justify-content: center;
+    align-items: center;
+}
+
+.social-icons img {
+    width: 24px;
+    height: 24px;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 20px auto 0; /* Center align and space above */
+    padding: 0 20px; /* Add padding on the sides */
+    border-top: 1px solid #ddd; /* Light gray border on top */
+    padding-top: 10px; /* Add padding on top after the border */
+    font-size: 0.9em; /* Slightly smaller text for the bottom section */
+    color: white;
+}
+
+.footer-bottom-nav {
+    gap: 15px; /* Smaller gap for the bottom nav links */
+}
+
+/* Keyframes for fade-in, fade-out effect */
+@keyframes fadeInOut {
+    0%, 50%, 100% {
+        opacity: 0;
+    }
+    25%, 75% {
+        opacity: 1;
+    }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 36px;
+    }
+    .text-content h2 {
+        font-size: 2em;
+    }
+    .text-content p {
+        font-size: 1.2em;
+    }
+    .content-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    .text-content, .image-content {
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+    .contact-info {
+        flex-direction: column; /* Stack contact items vertically */
+        align-items: center; /* Center items */
+    }
+    .contact-item {
+        flex: 1 1 auto; /* Allow items to adjust based on content */
+        padding: 20px 0; /* Add vertical padding */
+    }
 }

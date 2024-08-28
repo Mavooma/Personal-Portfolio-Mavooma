@@ -1,27 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vuyelwa Mavum</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vuyelwa Mavuma</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQ59FNpJ5m/fM2ivm1lqelKZgO5oF4b6dJ87OT+WwjjpLfs3kPaHZtWI8"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <header>
-        <nav class="navbar">
-            <div class="navbar-brand">Mavooma</div>
-            <div class="navbar-links">
-                <a href="Home">Home</a>
-                <a href="About">About</a>
-                <a href="Experience">Experience</a>
-                <a href="Contact">Contact</a>
-            </div>
-        </nav>
+      <nav class="navbar">
+        <div class="navbar-brand">Mavooma</div>
+        <div class="navbar-links">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
     </header>
 
     <section class="hero">
-        <h1>Hello! <span class="wave-emoji">😊</span> I’m <span class="name">Mavooma Frontend</span></h1>
-        <img src="images/Vuv.png" alt="Mavooma" class="hero-image">
+      <h1>
+        Hello! <span class="smile-emoji">😊</span> I’m
+        <span class="name"> Mavooma</span>
+      </h1>
+      <img src="images/Vuv.png" alt="Mavooma" class="hero-image" />
     </section>
-</body>
+
+    <hr class="section-divider" />
+
+    <div class="content-section">
+      <div class="text-content">
+        <h2 class="highlighted-name">About Me</h2>
+        <p>
+          Hello!<span class="wave-emoji">👋</span>I'm Vuyelwa, a passionate
+          front-end developer with a keen interest in crafting beautiful and
+          functional web experiences. With a solid foundation in HTML, CSS, and
+          JavaScript, along with a certification from SheCodes, I am
+          enthusiastic about creating user-friendly interfaces that leave a
+          lasting impression.
+        </p><br><br>
+
+        <p>
+          Take a peek at my
+          <a
+            href="images/Mavuma Vuyelwa Software Engineering.pdf"
+            class="cv-link"
+            download
+            >CV</a
+          >
+          📝 and see how I've been turning learning into a career journey. 😊
+        </p>
+      </div>
+      <div class="image-content">
+        <img
+          src="images/Untitled design (13).png"
+          alt="Mavooma"
+          class="section-image"
+        />
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <div class="education-experience-section">
+        <div class="container">
+            <!-- Education Section -->
+            <div class="education">
+                <h2 class="highlighted-name">Education</h2>
+                <!-- Education items -->
+                <div class="education-item">
+                    <p>Frontend Developer Certification - <br />
+                        <img src="images/SheCodes png.png" alt="SheCodes Logo" class="education-logo">
+                    </p>
+                </div>
+                <div class="education-item">
+                    <p>Software Engineering Certificate - <br />
+                        <img src="images/PLP.png" alt="Power Learn Project Logo" class="education-logo">
+                    </p>
+                </div>
+                <div class="education-item">
+                    <p>Diploma in Film and Television - <br />
+                        <img src="images/City_Varsity_Animation_School_and_Courses.png" alt="CityVarsity Logo" class="education-logo">
+                    </p>
+                </div>
+            </div>
+    
+            <!-- Experience Section -->
+            <div class="experience">
+                <h2 class="highlighted-name">Experience</h2>
+                <div class="experience-item">
+                    <img src="images/html.png" alt="HTML Icon" class="experience-icon" />
+                    <p>HTML - Proficient</p>
+                </div>
+                <div class="experience-item">
+                    <img src="images/css.png" alt="CSS Icon" class="experience-icon" />
+                    <p>CSS - Proficient</p>
+                </div>
+                <div class="experience-item">
+                    <img src="images/java-script.png" alt="JavaScript Icon" class="experience-icon" />
+                    <p>JavaScript - Familiar</p>
+                </div>
+                <div class="experience-item">
+                    <img src="images/react.png" alt="React Icon" class="experience-icon" />
+                    <p>React - Familiar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- Projects Section -->
+<section id="Projects" class="section">
+    <p class="center-heading heading-p">Browse My Recent</p>
+    <h1 class="center-heading heading">Projects</h1>
+    <div class="container project-container">
+        <!-- Project 1 -->
+        <div class="project">
+            <img src="images/Music App.jpg" alt="Project Image">
+            <h3>Music Player Project</h3>
+            <div class="button-wrapper"> <!-- Corrected class to match CSS -->
+                <a href="#" class="btn">Github</a>
+                <a href="#" class="btn">Live Demo</a>
+            </div>
+        </div>
+        <!-- Project 2 -->
+        <div class="project">
+            <img src="images/landing page.jpg" alt="Project Image">
+            <h3>Landing Page Project</h3>
+            <div class="button-wrapper"> <!-- Corrected class to match CSS -->
+                <a href="#" class="btn">Github</a>
+                <a href="#" class="btn">Live Demo</a>
+            </div>
+        </div>
+        <!-- Project 3 -->
+        <div class="project">
+            <img src="images/Weather App.jpg" alt="Project Image">
+            <h3>Weather App Project</h3>
+            <div class="button-wrapper"> <!-- Corrected class to match CSS -->
+                <a href="#" class="btn">Github</a>
+                <a href="#" class="btn">Live Demo</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <hr class="section-divider" />
+
+    <!-- Contact Section -->
+    <section id="Contact" class="contact-me">
+        <h2>Contact Me</h2>
+        <form action="#" method="post">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="logo">Mavooma</div>
+        <ul class="footer-nav">
+          <li><a href="HomePage.html">Home</a></li>
+          <li><a href="About.html">About</a></li>
+          <li><a href="Resources.html">Resources</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+        </ul>
+        <ul class="social-icons">
+          <li>
+            <a
+              href="https://github.com/Mavooma"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><img src="images/github (2).png" alt="GitHub"
+            /></a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/vuyelwa-mavuma/"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><img src="images/linkedin.png" alt="LinkedIn"
+            /></a>
+          </li>
+          <li>
+            <a
+              href="https://www.instagram.com/mavooma/"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><img src="images/instagram.png" alt="Instagram"
+            /></a>
+          </li>
+          <li>
+            <a
+              href="https://www.tiktok.com/@mavooma?lang=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><img src="images/tiktok.png" alt="TikTok"
+            /></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 Vuyelwa Mavuma. All rights reserved.</p>
+        <ul class="footer-bottom-nav">
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-and-conditions.html">Terms and Conditions</a></li>
+          <li><a href="cookie-policy.html">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+PLh5P5y4LZjpd1gdrWDBgpZCZ+PzK0eM/ZFj64hNmr5xl2R27SRVbmUMzP7WJ"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
