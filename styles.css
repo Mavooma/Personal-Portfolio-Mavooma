@@ -217,10 +217,11 @@ body {
 
 .education p, .experience p {
     font-size: 1.3em; /* Larger font size for readability */
-    color: #555; /* Softer dark gray */
+    color: black; /* Softer dark gray */
     line-height: 1.8; /* Space between lines */
     margin-bottom: 20px; /* Space below each paragraph */
     text-align: center; /* Center-align text */
+    font-weight: bold;
 }
 
 .education-logo {
