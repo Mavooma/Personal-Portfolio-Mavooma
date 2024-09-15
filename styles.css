@@ -327,48 +327,73 @@ body {
 }
 
 /* Contact Me Section */
-.contact-me {
-    width: 80%;
-    max-width: 600px;
-    margin: 50px auto;
+.contact-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: -40px;
+    background-color: #c62d70;
+}
+
+.contact-details {
+    flex: 1;
     padding: 20px;
-    background-color: #e85c0d;
-    border-radius: 10px;
-    text-align: center;
+    max-width: 600px;
+    text-align: left;
 }
 
-.contact-me h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
+.contact-details h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
-.contact-me form input[type="text"],
-.contact-me form input[type="email"],
-.contact-me form textarea {
-    width: 100%;
-    padding: 10px;
+.contact-details h3 {
+    font-size: 1.6rem;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.contact-details p {
+    font-size: 1.2rem;
     margin-bottom: 15px;
-    border: 1px solid black;
-    border-radius: 5px;
-    box-sizing: border-box;
 }
 
-.contact-me form textarea {
-    height: 150px;
-}
-
-.contact-me form button {
-    background: #c7253e;
-    color: #fff;
+.contact-details hr {
     border: none;
-    padding: 12px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    height: 3px;
+    font-weight: bold;
+    background-color: #e85c0d;
+    width: 130px;
+    margin: 20px 0;
 }
 
-.contact-me form button:hover {
-    background-color: #800080;
+.contact-details a {
+    text-decoration: none;
+    color: black;
+}
+
+.contact-image {
+    flex: 1;
+    text-align: center;
+    max-width: 600px;
+    padding: 20px;
+}
+
+.contact-image img {
+    width: 100%;
+    border-radius: 50%;
+    max-width: 400px;
+}
+
+.contact-image p {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.contact-image a {
+    text-decoration: none;
+    color: #007bff;
 }
 
 /* Footer Styles */
