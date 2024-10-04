@@ -73,6 +73,55 @@ body {
     text-decoration: underline; 
 }
 
+/* Loader Styles */
+.loader {
+    position: fixed; /* Keep it in front of everything */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #e85c0d; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensure it's on top of everything */
+}
+
+/* Hide the portfolio initially */
+.hidden {
+    display: none;
+}
+
+.letter {
+    font-size: 100px; /* Adjust size as needed */
+    font-weight: bold;
+    color: white; /* Change to desired color */
+    animation: heartbeat 2s ease-in-out 1s forwards, dissolve 3s ease-out 3s forwards;
+}
+
+/* Animation keyframes */
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    10%, 30% {
+        transform: scale(1.2);
+    }
+    20%, 40% {
+        transform: scale(1);
+    }
+}
+
+/* Dissolve animation */
+@keyframes dissolve {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 /* Navbar Container */
 .navbar {
     display: flex;
@@ -331,7 +380,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: -40px;
+    padding: 40px 0; /* Apply equal top and bottom padding */
     background-color: #c62d70;
 }
 
@@ -340,6 +389,18 @@ body {
     padding: 20px;
     max-width: 600px;
     text-align: left;
+}
+
+.highlight-title {
+    font-weight: bold;
+    background-color: #e85c0d;
+    color: black;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+.phone, .location, .mail {
+    color: white !important;
 }
 
 .contact-details h1 {
@@ -395,25 +456,6 @@ body {
     text-decoration: none;
     color: #007bff;
 }
-
-.cta-section {
-    text-align: center;
-    margin-top: 40px;
-  }
-  
-  .cta-btn {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    margin: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .cta-btn:hover {
-    background-color: #0056b3;
-  }  
 
 /* Footer Styles */
 .footer {
@@ -479,7 +521,7 @@ body {
 
 .footer-bottom {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     max-width: 1200px;
     margin: 20px auto 0; /* Center align and space above */
@@ -492,6 +534,60 @@ body {
 
 .footer-bottom-nav {
     gap: 15px; /* Smaller gap for the bottom nav links */
+}
+
+/* Intro Video Styles */
+.intro-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Ensure it's on top of everything */
+}
+
+.video-content {
+    background-color: #800080;
+    padding: 20px;
+    border: 2px solid black;
+    text-align: center;
+    max-width: 100%; /* Make sure the modal takes up most of the screen width */
+    max-height: 100%; /* Control the height as well */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-content h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: white;
+}
+
+.intro-video video {
+    width: 100%; 
+    max-width: 900px; 
+    height: auto;
+}
+
+.hidden {
+    display: none; /* Hides the intro video */
+}
+
+#closeVideo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #e85c0d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 @media (max-width: 480px) {
