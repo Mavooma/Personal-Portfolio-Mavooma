@@ -47,26 +47,33 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Get modal and close button elements
-const introVideoModal = document.getElementById("introVideoModal");
-const closeVideoButton = document.getElementById("closeVideo");
+// Function to handle showing the video popup
+function showIntroVideo() {
+    // Check if the video has already been shown by looking at localStorage
+    if (!localStorage.getItem('introVideoShown')) {
+        document.querySelector('.intro-video').classList.remove('hidden');
 
-// Select all portfolio links
-const portfolioLinks = document.querySelectorAll(".project .btn");
+        // Play the video if it exists and set it to autoplay
+        const video = document.querySelector('.intro-video video');
+        if (video) {
+            video.play();
+        }
 
-// Function to show the video modal
-function showVideoModal(event) {
-    event.preventDefault(); // Prevent the default link behavior
-    introVideoModal.classList.remove("hidden"); // Show the modal
+        // Set a flag in localStorage to indicate the video has been shown
+        localStorage.setItem('introVideoShown', 'true');
+    }
 }
 
-// Attach event listeners to each portfolio link to show the video modal on click
-portfolioLinks.forEach((link) => {
-    link.addEventListener("click", showVideoModal);
+// Close the video when clicking outside or on the close button
+document.querySelector('.intro-video').addEventListener('click', function() {
+    document.querySelector('.intro-video').classList.add('hidden');
 });
 
-// Hide modal when clicking the close button
-closeVideoButton.addEventListener("click", () => {
-    introVideoModal.classList.add("hidden");
+// Add event listeners to all project buttons
+document.querySelectorAll('.project-link').forEach(function(button) {
+    button.addEventListener('click', function(event) {
+        showIntroVideo();
+    });
 });
+
 
