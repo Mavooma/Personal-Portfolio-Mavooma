@@ -310,6 +310,44 @@ body {
     text-align: center;
     background-color: #e85c0d; /* Fixed typo */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative; /* Allows positioning of the overlay */
+    overflow: hidden; /* Ensures that the description doesn't overflow */
+    transition: transform 0.3s ease; /* Add transition for scaling effect */
+}
+
+/* Animation for project cards */
+.project:hover {
+    transform: scale(1.05); /* Slightly enlarge the card on hover */
+}
+
+/* Hide the description initially */
+.project-description {
+    display: none; /* Start hidden */
+    position: absolute; /* Position above buttons */
+    bottom: 80px; /* Adjust this value to move it above the buttons */
+    left: 0;
+    right: 0;
+    background: #800080; /* Background color for readability */
+    color: white; /* Text color for the description */
+    padding: 10px;
+    border-radius: 5px; /* Rounded corners */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition for opacity and scale */
+    opacity: 0; /* Start hidden */
+    transform: translateY(10px); /* Start slightly lower */
+}
+
+/* Show the description on hover */
+.project:hover .project-description {
+    display: block; /* Show the description */
+    opacity: 1; /* Make it visible */
+    transform: translateY(0); /* Move it up into view */
+}
+
+.project img {
+    border-radius: 30px;
+    margin-bottom: 1rem;
+    width: 100%; /* Makes images responsive */
+    height: auto;
 }
 
 #Projects {
@@ -342,23 +380,10 @@ body {
     color: #ffffff; /* Text color for project titles */
 }
 
-.project-description {
-    font-size: 1rem;
-    margin-bottom: 1rem; /* Adds space below description */
-    color: #dddddd; /* Adds color for description */
-}
-
 .button-wrapper {
     display: flex;
     justify-content: center;
     gap: 10px;
-}
-
-.project img {
-    border-radius: 30px;
-    margin-bottom: 1rem;
-    width: 100%; /* Makes images responsive */
-    height: auto;
 }
 
 /* Button Styles */
