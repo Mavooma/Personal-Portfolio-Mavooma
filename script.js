@@ -47,33 +47,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Function to handle showing the video popup
+// Flag to check if video has been shown
+let videoShown = false;
+
+// Function to show the intro video modal
 function showIntroVideo() {
-    // Check if the video has already been shown by looking at localStorage
-    if (!localStorage.getItem('introVideoShown')) {
-        document.querySelector('.intro-video').classList.remove('hidden');
-
-        // Play the video if it exists and set it to autoplay
-        const video = document.querySelector('.intro-video video');
-        if (video) {
-            video.play();
-        }
-
-        // Set a flag in localStorage to indicate the video has been shown
-        localStorage.setItem('introVideoShown', 'true');
+    if (!videoShown) {
+        const introVideoModal = document.querySelector('.intro-video');
+        introVideoModal.classList.remove('hidden'); // Show the video modal
+        videoShown = true; // Set the flag to true
     }
 }
 
-// Close the video when clicking outside or on the close button
-document.querySelector('.intro-video').addEventListener('click', function() {
-    document.querySelector('.intro-video').classList.add('hidden');
+// Function to close the video modal
+document.getElementById('closeVideo').addEventListener('click', function() {
+    const introVideoModal = document.querySelector('.intro-video');
+    introVideoModal.classList.add('hidden'); // Hide the video modal
+    const video = introVideoModal.querySelector('video');
+    if (video) {
+        video.pause(); // Pause the video when closing
+        video.currentTime = 0; // Reset to the beginning
+    }
 });
 
 // Add event listeners to all project buttons
-document.querySelectorAll('.project-link').forEach(function(button) {
+const projectButtons = document.querySelectorAll('.project-link'); // Select all project buttons
+projectButtons.forEach(button => {
     button.addEventListener('click', function(event) {
-        showIntroVideo();
+        event.preventDefault(); // Prevent the default action
+        showIntroVideo(); // Show the intro video
+        // Optional: You can redirect to the GitHub or Live Demo link after a short delay
+        setTimeout(() => {
+            window.location.href = this.href; // Redirect to the button's link
+        }, 3000); // Adjust the delay (in milliseconds) as needed
     });
 });
-
-
