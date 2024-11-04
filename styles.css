@@ -137,6 +137,7 @@ body {
     color: white;
 }
 
+/* Navbar Links */
 .navbar-links {
     display: flex;
     justify-content: flex-end;
@@ -153,6 +154,21 @@ body {
 
 .navbar-links a:hover {
     background-color: #c7253e;
+}
+
+/* Hamburger Icon for Mobile */
+.navbar-toggle {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.navbar-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
 }
 
 /* Hero Section */
@@ -624,11 +640,26 @@ body {
     }
 
     .navbar-links {
+        display: none;
         flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-        gap: 10px;
-        margin-top: 10px;
+        gap: 15px;
+        background-color: #e85c0d;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 200px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    /* Display the hamburger icon on smaller screens */
+    .navbar-toggle {
+        display: flex;
+    }
+
+    /* Show navbar links when active class is applied */
+    .navbar-links.active {
+        display: flex;
     }
 
     .navbar-links a {

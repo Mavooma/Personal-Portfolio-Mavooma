@@ -23,17 +23,23 @@
     </div>
 
     <!-- Portfolio section (hidden by default, will be shown after loader disappears) -->
-    <div class="portfolio hidden">
-        <header>
-            <nav class="navbar">
-                <div class="navbar-brand">Mavooma</div>
-                <div class="navbar-links">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#experience">Experience</a>
-                    <a href="#contact">Contact</a>
-                </div>
-            </nav>
+    <nav class="navbar">
+        <div class="navbar-brand">Mavooma</div>
+        
+        <!-- Hamburger Menu Icon -->
+        <div class="navbar-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <div class="navbar-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
         </header>
 
         <section id="home" class="hero">
@@ -236,12 +242,12 @@
     </footer>
     </div>
 
-     <!-- Intro Video Section -->
+<!-- Intro Video Section -->
 <div class="intro-video hidden">
     <div class="video-content">
         <h2>Wait before you leave...</h2>
-        <video autoplay muted>
-            <source src="images/intro.mp4" type="video/mp4">
+        <video controls muted>
+            <source src="images/Intro.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <button id="closeVideo">Close</button>
