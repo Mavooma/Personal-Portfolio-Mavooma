@@ -13,7 +13,7 @@ function setupToggleMenu() {
     if (navbarToggle) {
         navbarToggle.addEventListener('click', function () {
             const navbarLinks = document.getElementById('navbarLinks');
-            if (navbarLinks) navbarLinks.classList.toggle('show'); // Toggle CSS class
+            if (navbarLinks) navbarLinks.classList.toggle('show');
             console.log('Toggle clicked');
         });
     }
@@ -24,8 +24,8 @@ function setupLoader() {
     setTimeout(() => {
         const loader = document.querySelector('.loader');
         const portfolio = document.querySelector('.portfolio');
-        if (loader) loader.style.display = 'none'; // Hide loader if it exists
-        if (portfolio) portfolio.classList.remove('hidden'); // Show portfolio if it exists
+        if (loader) loader.style.display = 'none';
+        if (portfolio) portfolio.classList.remove('hidden');
     }, 5000); // Adjust time as needed
 }
 
@@ -33,7 +33,7 @@ function setupLoader() {
 function setupNameToggle() {
     const nameElement = document.querySelector('.name');
     if (nameElement) {
-        let names = ['Vuyelwa', 'Mavooma'];
+        const names = ['Vuyelwa', 'Mavooma'];
         let index = 0;
 
         function toggleName() {
@@ -64,52 +64,80 @@ function setupScrollAnimation() {
 // Flag to check if video has been shown
 let videoShown = false;
 let redirectUrl = "";
+let player;
 
-// Handle the intro video modal and redirection
+// Setup event listeners for video modal
 function setupVideoHandlers() {
     const closeVideoButton = document.getElementById('closeVideo');
     if (closeVideoButton) {
-        closeVideoButton.addEventListener('click', closeIntroVideo);
+        closeVideoButton.addEventListener('click', function() {
+            console.log('Close button clicked');  // Debugging log
+            closeIntroVideo();
+        });
     }
 }
 
-// Function to show the intro video modal
+// Show the intro video modal
 function showIntroVideo(url) {
     const introVideoModal = document.querySelector('.intro-video');
-    const video = introVideoModal ? introVideoModal.querySelector('video') : null;
+    const iframe = introVideoModal ? introVideoModal.querySelector('iframe') : null;
 
-    if (!videoShown && introVideoModal && video) {
+    if (!videoShown && introVideoModal && iframe) {
         introVideoModal.classList.remove('hidden');
         videoShown = true;
         redirectUrl = url;
-        video.play();
-        video.addEventListener('ended', redirectAfterVideo, { once: true });
+
+        // If player is not initialized, initialize it
+        if (!player) {
+            onYouTubePlayerAPIReady();
+        } else {
+            player.playVideo();  // If player is already initialized, just play it
+        }
+    }
+}
+
+// Function to close the intro video modal
+function closeIntroVideo() {
+    console.log("Closing intro video...");
+    const introVideoModal = document.querySelector('.intro-video');
+    const video = introVideoModal ? introVideoModal.querySelector('iframe') : null;
+
+    if (introVideoModal) introVideoModal.classList.add('hidden'); // Hide modal
+    if (video) {
+        player.stopVideo(); // Stop the video properly
+    }
+
+    redirectUrl = "";
+    videoShown = false;
+}
+
+// YouTube Player API will call this function when it's ready
+function onYouTubePlayerAPIReady() {
+    // Initialize the player once the API is ready
+    const player = new YT.Player('youtubePlayer', {
+        events: {
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+// Detect video state changes and perform actions when video ends
+function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.ENDED) {
+        redirectAfterVideo();
     }
 }
 
 // Redirect after video ends
 function redirectAfterVideo() {
     if (redirectUrl) {
-        window.location.href = redirectUrl;
+        console.log("Redirecting to: " + redirectUrl); // Debugging log
+        window.location.href = redirectUrl; // Redirect after video ends
         videoShown = false;
     }
 }
 
-// Close the intro video modal
-function closeIntroVideo() {
-    const introVideoModal = document.querySelector('.intro-video');
-    const video = introVideoModal ? introVideoModal.querySelector('video') : null;
-
-    if (introVideoModal) introVideoModal.classList.add('hidden');
-    if (video) {
-        video.pause();
-        video.currentTime = 0;
-    }
-    redirectUrl = "";
-    videoShown = false;
-}
-
-// Add event listeners to all project buttons
+// Set up event listeners on project links
 function setupProjectLinks() {
     const projectButtons = document.querySelectorAll('.project-link');
     projectButtons.forEach(button => {
