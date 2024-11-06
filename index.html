@@ -18,6 +18,8 @@
 />
   
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://www.youtube.com/iframe_api"></script>
+
 </head>
 <body>
     <div class="loader">
@@ -248,12 +250,13 @@
     </div>
 
 <!-- Intro Video Section -->
-<div class="intro-video hidden">
+<div class="intro-video hidden" id="introVideoModal">
     <div class="video-content">
         <h2 class="highlighted-name">Wait before you leave...</h2>
         <div class="youtube-video-container">
-            <iframe 
-                src="https://www.youtube.com/embed/Fm9pd648v6k" 
+            <!-- Adding ID to iframe for better targeting -->
+            <iframe id="youtubePlayer"
+                src="https://www.youtube.com/embed/Fm9pd648v6k?autoplay=1"
                 frameborder="0" 
                 allow="autoplay; encrypted-media" 
                 allowfullscreen>
@@ -264,7 +267,6 @@
 </div>
 
     <script src="script.js"></script>
-    <script src="https://www.youtube.com/iframe_api"></script>
 
     <!-- Bootstrap JS and dependencies -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

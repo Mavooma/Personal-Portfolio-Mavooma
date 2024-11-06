@@ -65,6 +65,7 @@ function setupScrollAnimation() {
 let videoShown = false;
 let redirectUrl = "";
 let player;
+let isRedirecting = false;
 
 // Setup event listeners for video modal
 function setupVideoHandlers() {
@@ -79,6 +80,8 @@ function setupVideoHandlers() {
 
 // Show the intro video modal
 function showIntroVideo(url) {
+    if (videoShown || isRedirecting) return;
+
     const introVideoModal = document.querySelector('.intro-video');
     const iframe = introVideoModal ? introVideoModal.querySelector('iframe') : null;
 
@@ -86,6 +89,7 @@ function showIntroVideo(url) {
         introVideoModal.classList.remove('hidden');
         videoShown = true;
         redirectUrl = url;
+        console.log('Setting redirect URL:', redirectUrl);
 
         // If player is not initialized, initialize it
         if (!player) {
@@ -103,18 +107,19 @@ function closeIntroVideo() {
     const video = introVideoModal ? introVideoModal.querySelector('iframe') : null;
 
     if (introVideoModal) introVideoModal.classList.add('hidden'); // Hide modal
-    if (video) {
+    if (video && player) {
         player.stopVideo(); // Stop the video properly
     }
 
-    redirectUrl = "";
+    // Reset flags after video is closed
     videoShown = false;
+    redirectUrl = ""; // Clear redirect URL when video is closed
 }
 
 // YouTube Player API will call this function when it's ready
 function onYouTubePlayerAPIReady() {
-    // Initialize the player once the API is ready
-    const player = new YT.Player('youtubePlayer', {
+    console.log('YouTube Player API ready. Initializing player...');
+    player = new YT.Player('youtubePlayer', {
         events: {
             'onStateChange': onPlayerStateChange
         }
@@ -124,16 +129,18 @@ function onYouTubePlayerAPIReady() {
 // Detect video state changes and perform actions when video ends
 function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.ENDED) {
+        console.log("Video has ended. Redirecting to:", redirectUrl);
         redirectAfterVideo();
     }
 }
 
 // Redirect after video ends
 function redirectAfterVideo() {
-    if (redirectUrl) {
-        console.log("Redirecting to: " + redirectUrl); // Debugging log
-        window.location.href = redirectUrl; // Redirect after video ends
-        videoShown = false;
+    if (redirectUrl && !isRedirecting) {
+        isRedirecting = true; // Flag to prevent multiple redirects
+        setTimeout(function() {
+            window.location.href = redirectUrl; // Redirect after video ends
+        }, 200); // Small delay before redirect for smoother transition
     }
 }
 
@@ -143,7 +150,19 @@ function setupProjectLinks() {
     projectButtons.forEach(button => {
         button.addEventListener('click', function(event) {
             event.preventDefault();
-            showIntroVideo(this.href);
+            if (!videoShown && !isRedirecting) {
+                showIntroVideo(this.href);  // Only show video if not already shown or redirecting
+                console.log('Video triggered, URL set to: ', this.href);
+            }
         });
     });
 }
+
+// Call this to initialize the necessary event listeners
+function init() {
+    setupVideoHandlers();
+    setupProjectLinks();
+}
+
+// Run initialization
+init();
