@@ -1,13 +1,16 @@
 // Toggle the visibility of the navbar links on mobile
-const navbarToggle = document.querySelector('.navbar-toggle');
-if (navbarToggle) {
-    navbarToggle.addEventListener('click', function() {
-        const navbarLinks = document.querySelector('.navbar-links');
-        if (navbarLinks) {
-            navbarLinks.classList.toggle('active'); // Show or hide navbar links
-        }
-    });
+function toggleMenu() {
+    const navbarLinks = document.getElementById('navbarLinks');
+    navbarLinks.classList.toggle('show'); // This will now correspond to your CSS
 }
+
+// Add event listener to the toggle button
+document.addEventListener('DOMContentLoaded', function () {
+    const navbarToggle = document.querySelector('.navbar-toggle');
+    if (navbarToggle) {
+        navbarToggle.addEventListener('click', toggleMenu);
+    }
+});
 
 // JavaScript to hide the loader after 5 seconds
 setTimeout(() => {
