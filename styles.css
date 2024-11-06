@@ -7,7 +7,7 @@
 }
 
 html {
-    scroll-behavior: smooth; /* Enables smooth scrolling */
+    scroll-behavior: smooth; 
 }
 
 body {
@@ -45,7 +45,7 @@ body {
 .center-heading {
     font-size: 3rem; 
     color: #ffffff; 
-    margin: 0 0 10px 0; /* Add margin below for spacing */
+    margin-bottom: 10px;
 }
 
 .highlighted-name {
@@ -142,15 +142,15 @@ body {
 a .logo {
     color: inherit;
     text-decoration: none;
-  }
-  a {
+}
+
+a {
     text-decoration: none !important;
-  }  
+}
 
 /* Navbar Links */
 .navbar-links {
-    display: flex;
-    justify-content: flex;
+    display: flex; /* Change to flex to show links in a row */
     gap: 20px;
 }
 
@@ -233,6 +233,7 @@ a .logo {
 .text-content {
     flex: 1 1 45%;
     padding-right: 20px;
+    text-align: center;
 }
 
 .text-content h2 {
@@ -283,7 +284,7 @@ a .logo {
     padding: 30px; /* Padding inside each section */
     border-radius: 12px; /* Rounded corners */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Shadow effect */
-    border: 5px solid #c62d70; /* Border matching theme */
+    border: 5px solid#e85c0d; /* Border matching theme */
     display: flex;
     flex-direction: column;
     align-items: center; /* Center-align items horizontally */
@@ -664,8 +665,10 @@ a .logo {
         top: 60px;
         left: 0;
         width: 100%;
+        text-align: center;
         padding: 10px;
         border-radius: 5px;
+        z-index: 10;
     }
 
     /* Display the hamburger icon on smaller screens */
