@@ -136,7 +136,12 @@ body {
 .navbar-brand {
     font-size: 2em;
     font-weight: bold;
-    color: white;
+    color: white !important;
+}
+
+.navbar-brand .logo {
+    color: white !important;
+    text-decoration: none;
 }
 
 a .logo {
@@ -144,7 +149,7 @@ a .logo {
     text-decoration: none;
 }
 
-a {
+.navbar a {
     text-decoration: none !important;
     color: white;
 }
