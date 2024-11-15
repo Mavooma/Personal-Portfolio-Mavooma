@@ -49,12 +49,31 @@ body {
 }
 
 .highlighted-name {
-    display: inline-block; 
-    background-color: #800080; 
-    color: white; 
-    padding: 5px 10px; 
-    border-radius: 5px; 
-    font-size: 24px; 
+    display: inline-block;
+    background-color: #800080; /* Purple background */
+    color: white;
+    padding: 8px 16px; /* Slightly increased padding */
+    border-radius: 5px;
+    font-size: 24px;
+    margin-bottom: 15px; /* Space below the heading */
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.3s ease; /* Smooth transform animation */
+}
+
+/* Optional: Add hover effect */
+.highlighted-name:hover {
+    transform: translateY(-2px); /* Slight lift effect on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+    .highlighted-name {
+        font-size: 20px; /* Slightly smaller on mobile */
+        padding: 6px 12px; /* Reduced padding on mobile */
+    }
 }
 
 .cv-link {
@@ -128,39 +147,51 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #e85c0d;
+    background: #e85c0d;
+    transition: background-color 0.3s ease-in-out;
+    position: relative; /* Add this to contain absolute positioned elements */
+}
+
+/* Update Navbar Toggle Button */
+.navbar-toggle {
+    display: none; /* Hidden by default on desktop */
+    background: transparent;
+    border: none;
+    border-color: white;
     color: white;
-    position: relative;
+    cursor: pointer;
+    padding: 10px;
 }
 
-.navbar-brand {
-    font-size: 2em;
-    font-weight: bold;
-    color: white !important;
+.navbar-toggler-icon {
+    background-color: #bb8d6c;
+    background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/list.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 30px;
+    height: 30px;
+    filter: invert(100%) !important;
 }
 
-.navbar-brand .logo {
-    color: white !important;
-    text-decoration: none;
-}
-
-a .logo {
-    color: white !important;
-    text-decoration: none;
-}
-
-.navbar a {
-    text-decoration: none !important;
-    color: white;
-}
-
-/* Navbar Links */
+/* Navbar Links Container */
 .navbar-links {
-    display: flex; /* Flexbox for horizontal layout */
-    gap: 20px; /* Space between links */
+    display: flex;
+    gap: 20px;
 }
 
-/* Navbar Links - Styling for Links */
+.navbar-links.collapsed {
+    display: none;
+}
+
+.navbar-links.expanded {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e85c0d; /* Adjust to match your design */
+}
+
+/* Individual Navbar Links */
 .navbar-links a {
     text-decoration: none;
     color: white;
@@ -169,27 +200,120 @@ a .logo {
     border-radius: 5px;
 }
 
-.navbar-links a:hover {
-    background-color: #c7253e;  /* Highlight effect on hover */
+/* Mobile Styles */
+@media (max-width: 480px) {
+    .navbar-toggle {
+        display: block;
+        background: transparent;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    .navbar-toggle.active {
+        color: #c7253e;
+    }
+
+    .navbar-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #e85c0d;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    .navbar-links.expanded {
+        display: flex;
+    }
+
+    .navbar-links a {
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+    }
 }
 
-/* Hamburger Icon Styling */
-.navbar-toggle {
-    display: none;  /* Hidden by default on larger screens */
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;  /* Width of the hamburger icon */
-    height: 24px;  /* Height of the hamburger icon */
+/* Navbar Brand */
+.navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;  /* Match padding with navbar links */
+    border-radius: 5px; /* Match border-radius with navbar links */
+}
+
+/* Update navbar brand hover effect */
+.navbar-brand:hover {
+    background-color: #eaeaea;
+    color: #c62d70;  /* This already matches the navbar links hover color */
+}
+
+/* Navbar Links */
+.navbar-links {
+    display: flex;
+    gap: 20px;
+}
+
+/* Navbar Toggler Button (Mobile) */
+.navbar-toggler {
+    border: none;
+    background-color: transparent;
+    color: white;
+    border-color: white;
     cursor: pointer;
+    display: none; /* Visible on mobile */
+    padding: 10px;
+    z-index: 100;
 }
 
-.navbar-toggle span {
+/* Navbar Toggler Icon - Font Awesome */
+.navbar-toggler .fas.fa-bars {
+    font-size: 1.5em;
+}
+
+/* Navbar Links */
+.navbar-links {
+    display: flex;
+    gap: 20px;
+}
+
+/* Collapsible Navbar Links (Mobile) */
+#navbarLinks {
+    display: flex; /* Hidden by default */
+}
+
+/* Display navbar links when 'show' class is added */
+#navbarLinks.show {
     display: block;
+    background-color: #e85c0d; /* Ensure consistency in mobile view */
+    position: absolute;
+    top: 60px;
     width: 100%;
-    height: 3px;  /* Thickness of each bar */
-    background-color: white;
-    border-radius: 2px;
-    transition: all 0.3s ease;  /* Smooth transition for animation */
+    left: 0;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Navbar Links Style */
+.navbar-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    padding: 8px 15px;
+    border-radius: 5px;
+    display: block; /* Stacked layout on mobile */
+}
+
+/* Hover Effects */
+.navbar-links a:hover {
+    background-color: #eaeaea;
+    color: #c62d70;
 }
 
 /* Hero Section */
@@ -389,27 +513,10 @@ a .logo {
     height: auto;
 }
 
-#Projects {
-    text-align: center;
-    width: 100;
-    margin: 0 auto;
-}
-
-#Projects h1, #Projects p {
-    display: inline-block; /* Ensures the text is treated as inline for centering */
-    margin: 0 auto; /* Center the block-level elements horizontally */
-    color: #ffffff; /* Set color to white for better contrast */
-}
-
-#Projects h1 {
-    font-size: 3rem; /* Adjust font size as needed */
-    color: #ffffff; /* Set color to white for better contrast */
-    margin: 20px 0; /* Add margin above and below */
-}
-
-#Projects p {
-    font-size: 2rem; /* Adjust font size as needed */
-    margin: 10px 0; /* Add margin above and below */
+#projects h1 {
+    font-size: 2rem;
+    color: #ffffff;
+    margin: 20px 0;
 }
 
 .project h3 {
@@ -423,6 +530,8 @@ a .logo {
     display: flex;
     justify-content: center;
     gap: 10px;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+    margin-top: 15px;
 }
 
 /* Button Styles */
@@ -432,11 +541,30 @@ a .logo {
     padding: 10px 20px; /* Adjusted padding for consistency */
     border-radius: 5px;
     text-decoration: none;
-    transition: background-color 0.3s ease; /* Smooth transition on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition on hover */
+    min-width: 120px; /* Ensure minimum button width */
+    text-align: center;
+    cursor: pointer;
 }
 
 .btn:hover {
     background-color: #800080; /* Darker shade on hover */
+    transform: translateY(-2px);
+}
+
+/* Mobile responsiveness for buttons */
+@media (max-width: 480px) {
+    .button-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 200px;
+        padding: 8px 16px;
+    }
 }
 
 /* Newsletter Section */
@@ -513,69 +641,19 @@ a .logo {
     text-decoration: underline;
   }
 
-/* Contact Me Section */
+/* Updated Contact Section Styles */
 .contact-section {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 0; /* Apply equal top and bottom padding */
+    padding: 40px;
+    gap: 40px;
     background-color: #c62d70;
-}
-
-.contact-details {
-    flex: 1;
-    padding: 20px;
-    max-width: 600px;
-    text-align: left;
-}
-
-.highlight-title {
-    font-weight: bold;
-    background-color: #e85c0d;
-    color: black;
-    padding: 2px 5px;
-    border-radius: 3px;
-}
-
-.phone, .location, .mail {
-    color: white !important;
-}
-
-.contact-details h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.contact-details h3 {
-    font-size: 1.6rem;
-    color: white;
-    margin-bottom: 10px;
-}
-
-.contact-details p {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-}
-
-.contact-details hr {
-    border: none;
-    height: 3px;
-    font-weight: bold;
-    background-color: #e85c0d;
-    width: 130px;
-    margin: 20px 0;
-}
-
-.contact-details a {
-    text-decoration: none;
-    color: black;
 }
 
 .contact-image {
     flex: 1;
-    text-align: center;
-    max-width: 600px;
-    padding: 20px;
+    max-width: 500px;
 }
 
 .contact-image img {
@@ -584,15 +662,92 @@ a .logo {
     max-width: 400px;
 }
 
-.contact-image p {
-    font-size: 0.9rem;
-    font-weight: bold;
-    margin-top: 10px;
+.contact-form-container {
+    flex: 1;
+    max-width: 600px;
 }
 
-.contact-image a {
-    text-decoration: none;
-    color: #007bff;
+.contact-form-container h1 {
+    margin-bottom: 15px;
+}
+
+.contact-form-container h3 {
+    color: white;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e85c0d;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    font-size: 1rem;
+}
+
+.contact-form textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #800080;
+    box-shadow: 0 0 5px rgba(128, 0, 128, 0.3);
+}
+
+.submit-btn {
+    background-color: #e85c0d;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+}
+
+.submit-btn:hover {
+    background-color: #c7253e;
+}
+
+/* Mobile responsiveness for contact section */
+@media (max-width: 768px) {
+    .contact-section {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .contact-image {
+        order: -1; /* Ensures image stays at top on mobile */
+        margin-bottom: 30px;
+    }
+
+    .contact-form-container {
+        width: 100%;
+        padding: 0 15px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        align-self: center;
+    }
 }
 
 /* Footer Styles */
@@ -631,7 +786,10 @@ a .logo {
 }
 
 .footer-nav a:hover, .footer-bottom-nav a:hover {
-    color: #c7253e; 
+    background-color: #eaeaea;
+    color: #c62d70;  /* Changed from #c7253e to match navbar hover color */
+    padding: 8px 15px;  /* Match padding with navbar links */
+    border-radius: 5px;  /* Match border-radius with navbar links */
 }
 
 .social-icons li {
@@ -681,31 +839,46 @@ a .logo {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
-    display: flex;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none; /* Changed from flex to none */
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.intro-video:not(.hidden) {
+    display: flex;
+    opacity: 1;
 }
 
 .video-content {
-    text-align: center;
-    background-color: #e85c0d;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    max-width: 90%;
-    width: 600px;
+    background-color: whitesmoke;
+    padding: 30px;
+    border-radius: 15px;
+    position: relative;
+    width: 90%;
+    max-width: 800px; /* Increased from default size */
 }
 
-.video-content h2 {
-    margin-bottom: 20px;
-    color: white;
-}
-
-.youtube-video-container iframe {
+.youtube-video-container {
+    position: relative;
     width: 100%;
-    height: 315px;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    margin: 20px 0;
+    border: 4px solid #e85c0d; /* Added thicker border */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+}
+
+.youtube-video-container #youtubePlayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     border-radius: 8px;
 }
 
@@ -736,39 +909,53 @@ button#closeVideo:hover {
     background-color: #c7253e;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 1024px) {
+    /* Navbar Container Adjustments for Mobile */
     .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 5px;
+        padding: 10px 15px;
+        flex-direction: row; /* Ensures toggle and brand stay inline */
     }
 
+    /* Navbar Logo */
+    .navbar-logo { 
+        color: white !important;
+    }
+
+    /* Navbar Links - Hidden initially, shown on toggle */
     .navbar-links {
-        display: none;
+        display: none; /* Hidden by default */
         flex-direction: column;  /* Stack links vertically */
         align-items: center;
-        width: 100%;  /* Ensure the links take full width */
+        width: 100%; /* Full width on mobile */
         position: absolute;
-        top: 60px;  /* Adjust position as needed */
+        top: 60px; /* Adjust position as needed */
         left: 0;
-        background-color: #e85c0d;  /* Match the navbar color */
+        background-color: #e85c0d; /* Match navbar color */
         padding: 10px 0;
     }
 
     /* Display the hamburger icon on smaller screens */
-    .navbar-toggle {
-        display: flex; /* Show the toggle icon on small screens */
+    .navbar-toggler {
+        display: block; /* Show toggle icon */
+        color: white;
     }
 
-    /* Show navbar links when 'show' class is applied */
-    .navbar-links.show {
-        display: flex;
+    /* Show navbar links when the 'show' class is added */
+    #navbarLinks.show {
+        display: flex; /* Show links when toggled */
     }
 
+    /* Style navbar links on mobile */
     .navbar-links a {
-        padding: 10px;
-        width: 100%;
-        text-align: left;
+        font-size: 1em;
+        padding: 6px 12px;
+        text-align: center;
+        width: 100%; /* Full width for easy tapping */
+    }
+
+    .navbar-links.active { /* Changed from .expanded to .active */
+        display: flex;
+        flex-direction: column;
     }
 }
 
@@ -879,6 +1066,11 @@ button#closeVideo:hover {
         font-size: 0.8em; /* Smaller footer text */
     }
 
+    .footer a {
+        text-decoration: none !important;
+        color: white !important;
+    }    
+
     .footer-nav,
     .social-icons {
         display: flex;
@@ -889,5 +1081,71 @@ button#closeVideo:hover {
     .footer-nav li,
     .social-icons li {
         margin-bottom: 10px;
+    }
+}
+
+/* Update the project button styles */
+.project .btn {
+    background-color: #c7253e;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    min-width: 120px;
+    text-align: center;
+    cursor: pointer;
+    border: none; /* Add this to ensure consistent styling */
+    display: inline-block; /* Add this to ensure proper link behavior */
+}
+
+.project .btn:hover {
+    background-color: #800080;
+    transform: translateY(-2px);
+}
+
+/* Update the close button styles */
+.close-btn {
+    margin-top: 20px;
+    padding: 8px 16px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #e85c0d;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 10;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.close-btn:hover {
+    background-color: #c7253e;
+}
+
+/* Add these styles to your existing CSS */
+.submit-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Optional: Add animation for loading state */
+.submit-btn:disabled::after {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-left: 10px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
     }
 }

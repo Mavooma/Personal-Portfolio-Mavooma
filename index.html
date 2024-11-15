@@ -15,12 +15,21 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
 <link rel="manifest" href="/images/site.webmanifest">
 
-    <!-- Using Bootstrap 5.3.0 only -->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQ59FNpJ5m/fM2ivm1lqelKZgO5oF4b6dJ87OT+WwjjpLfs3kPaHZtWI8" crossorigin="anonymous" />
+    <link
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css" />
   
     <link rel="stylesheet" href="styles.css" />
     <script src="https://www.youtube.com/iframe_api"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function() {
+          emailjs.init("YOUR_PUBLIC_KEY"); // Add your EmailJS public key here
+       })();
+    </script>
 
 </head>
 <body>
@@ -28,26 +37,24 @@
         <div class="letter">M</div>
     </div>
 
-    <div class="navbar">
-        <div class="navbar-brand">
-            <a href="#" class="logo">Mavooma</a>
-        </div>
-        
-        <!-- Hamburger Icon (visible on mobile) -->
-        <div class="navbar-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        
-        <!-- Navbar Links -->
-        <div class="navbar-links" id="navbarLinks">
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <a href="index.html" class="navbar-brand">
+            <div>Mavooma</div>
+        </a>
+    
+        <!-- Burger Button (Hamburger) -->
+        <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+            <i class="fas fa-bars" style="color: white;"></i>
+        </button>
+    
+        <!-- Collapsible Links -->
+        <div class="navbar-links">
             <a href="#">Home</a>
             <a href="#">About</a>
             <a href="#">Services</a>
             <a href="#">Contact</a>
         </div>
-    </div>
+    </nav>    
     
         </header>
 
@@ -139,8 +146,8 @@
         <div class="portfolio">
           <!-- Portfolio Section -->
           <section id="projects" class="section">
-              <p class="center-heading heading-p">Browse My Recent</p>
-              <h1 class="highlighted-name">Projects</h1>
+              <h2 class="highlighted-name">Browse My Recent</h2>
+              <h1>Projects</h1>
               <div class="container project-container">
                   <div class="project">
                       <img src="images/Blogger.png" alt="Web Developer Blog">
@@ -149,30 +156,30 @@
                         <strong><p>A personal blog showcasing my journey as a web developer, featuring insightful articles, project highlights, and resources for fellow coders.</p></strong>
                     </div>
                       <div class="button-wrapper">
-                          <a href="https://github.com/Mavooma/Vuyelwa-Mavuma-Blog-Portfolio" class="btn project-link">Github</a>
-                          <a href="https://thecodersjourney.netlify.app/" class="btn project-link">Live Demo</a>
+                        <a href="https://github.com/Mavooma/Vuyelwa-Mavuma-Blog-Portfolio" target="_blank" rel="noopener noreferrer" class="btn project-link">Github</a>
+                          <a href="your-live-demo-url-1.com" target="_blank" rel="noopener noreferrer" class="btn project-link">Live Demo</a>
                       </div>
                   </div>
                   <div class="project">
                       <img src="images/Temp.png" alt="Email Template">
-                      <h3>Email Template</h3>
+                      <h3>Frosty Flavors</h3>
                       <div class="project-description">
                         <strong><p>A visually appealing email template designed for Frosty Flavors, aimed at engaging customers with delicious updates, promotions, and new flavor announcements.</p></strong>
                       </div>
                       <div class="button-wrapper">
-                          <a href="https://github.com/Mavooma/Frosty-flavors" class="btn project-link">Github</a>
-                          <a href="https://frostyflavors.netlify.app/" class="btn project-link">Live Demo</a>
+                          <a href="https://github.com/Mavooma/Frosty-flavors" target="_blank" rel="noopener noreferrer" class="btn project-link">Github</a>
+                          <a href="your-live-demo-url-2.com" target="_blank" rel="noopener noreferrer" class="btn project-link">Live Demo</a>
                       </div>
                   </div>
                   <div class="project">
-                      <img src="images/Weather App.jpg" alt="Weather App Project">
-                      <h3>E-Learning Landing Page</h3>
+                      <img src="images/VirtualA.png" alt="Weather App Project">
+                      <h3>Virtual Assistant Portfolio</h3>
                       <div class="project-description">
-                        <strong><p>will add once complete</p></strong>
+                        <strong><p>Virtual Assistant Portfolio: Showcasing my skills in administrative support, task management, and client communication for efficient virtual assistance.</p></strong>
                       </div>
                       <div class="button-wrapper">
-                          <a href="#" class="btn project-link">Github</a>
-                          <a href="#" class="btn project-link">Live Demo</a>
+                          <a href="https://github.com/Mavooma/Virtual-Assistant-Portfolio" target="_blank" rel="noopener noreferrer" class="btn project-link">Github</a>
+                          <a href="your-live-demo-url-3.com" target="_blank" rel="noopener noreferrer" class="btn project-link">Live Demo</a>
                       </div>
                   </div>
               </div>
@@ -185,34 +192,42 @@
             <h2 class="highlighted-name">Stay up-to-date with my latest projects</h2>
             <p>Get notified about my newest projects, resources, and insights to support my Software Engineering journey.</p>
             
-            <form class="newsletter-form">
-                <input type="name" placeholder="Name*" required>
-              <input type="email" placeholder="Email*" required>
-              <label>
-                <input type="checkbox" required>
-                <span>By entering your email you agree to receive our newsletter. You can unsubscribe at any time. See our <a href="#">privacy policy</a>.</span>
-              </label>
-              <button type="submit">Sign me up</button>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="name" name="name" placeholder="Name*" required>
+                <input type="email" name="email" placeholder="Email*" required>
+                <label>
+                    <input type="checkbox" required>
+                    <span>By entering your email you agree to receive our newsletter. You can unsubscribe at any time. See our <a href="#">privacy policy</a>.</span>
+                </label>
+                <button type="submit" class="submit-btn">Sign me up</button>
             </form>
-          </div>
+        </div>
 
-          <hr class="section-divider" />
+        <hr class="section-divider" />
 
         <!-- Contact Section -->
         <div class="contact-section">
-            <div class="contact-details">
-                <h1 class="highlighted-name">Let's Work Together!</h1>
-                <br />
-                <h3>Ready to bring your vision to life? Get in touch to start building your next web project today!</h3>
-                <hr />
-                <strong>
-                    <p><span class="highlight-title">Phone:</span> <span class="phone">(065) 993 7380</span></p>
-                    <p><span class="highlight-title">Location:</span> <span class="location">Northgate, Johannesburg, 2162</span></p>
-                    <p><span class="highlight-title">Mail:</span> <a href="mailto:mavumavuyelwa@gmail.com" class="mail">mavumavuyelwa@gmail.com</a></p>
-                </strong>
-            </div>
             <div class="contact-image">
                 <img src="images/pink.png" alt="Desk Setup" />
+            </div>
+            <div class="contact-form-container">
+                <h1 class="highlighted-name">Let's Work Together!</h1>
+                <h3>Ready to bring your vision to life? Get in touch to start building your next web project today!</h3>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name*" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email*" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" placeholder="Subject*" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Your Message*" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
             </div>
         </div>
 
@@ -269,28 +284,30 @@
     </div>
 
 <!-- Intro Video Section -->
-<div class="intro-video hidden" id="introVideoModal">
+<div class="intro-video hidden" id="introVideoModal" aria-hidden="true">
     <div class="video-content">
         <h2 class="highlighted-name">Wait before you leave...</h2>
         <div class="youtube-video-container">
-            <!-- Adding ID to iframe for better targeting -->
-            <iframe id="youtubePlayer"
-                src="https://www.youtube.com/embed/Fm9pd648v6k?si=V7xUnMARrF-cujBP"
+            <iframe 
+                id="youtubePlayer"
+                width="560" 
+                height="315" 
+                src="https://www.youtube-nocookie.com/embed/Fm9pd648v6k?si=oLG5PLlT-ubVBgx7&autoplay=1" 
                 frameborder="0" 
-                allow="autoplay; encrypted-media" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen>
             </iframe>
         </div>
-        <button id="closeVideo">Close</button>
+        <button id="closeModal" class="close-btn" aria-label="Close video modal">Close</button>
     </div>
 </div>
 
     <script src="script.js"></script>
 
     <!-- Bootstrap JS and dependencies -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+G9kt7pNU5EdmUrZB++6KlvF6D2lg" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>
