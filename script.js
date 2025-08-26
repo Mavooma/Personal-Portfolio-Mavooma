@@ -2,42 +2,16 @@ document.addEventListener('DOMContentLoaded', function() {
     setupLoader();
     setupNameToggle();
     setupScrollAnimation();
-    setupVideoHandlers();
-    setupProjectLinks();
-    const modal = document.getElementById('introVideoModal');
-    const closeButton = document.getElementById('closeModal');
-    const player = document.getElementById('youtubePlayer');
 
-    // Function to close the modal
-    function closeModal() {
-        modal.classList.add('hidden');
-        // Stop the video when closing the modal
-        if (player) {
-            player.src = player.src;
-        }
-    }
+    // Select the toggle button and the navbar links container
+    const toggleButton = document.querySelector('.navbar-toggler');
+    const navbarLinks = document.querySelector('.navbar-links');
 
-    // Add click event listener to close button
-    if (closeButton) {
-        closeButton.addEventListener('click', closeModal);
-    }
-
-    // Optional: Close modal when clicking outside the video content
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            closeModal();
-        }
+    // Add a click event listener to toggle the 'collapsed' class
+    toggleButton.addEventListener('click', () => {
+        navbarLinks.classList.toggle('collapsed');
+        navbarLinks.classList.toggle('expanded');
     });
-});
-
-// Select the toggle button and the navbar links container
-const toggleButton = document.querySelector('.navbar-toggler');
-const navbarLinks = document.querySelector('.navbar-links');
-
-// Add a click event listener to toggle the 'collapsed' class
-toggleButton.addEventListener('click', () => {
-    navbarLinks.classList.toggle('collapsed');
-    navbarLinks.classList.toggle('expanded');
 });
 
 // JavaScript to hide the loader after 5 seconds
@@ -82,139 +56,70 @@ function setupScrollAnimation() {
     faders.forEach(fader => appearOnScroll.observe(fader));
 }
 
-// Flag to check if video has been shown
-let videoShown = false;
-let redirectUrl = "";
-let player;
-let isRedirecting = false;
+const handleOnclickRedirect = () => {
 
-// Setup event listeners for video modal
-function setupVideoHandlers() {
-    const closeVideoButton = document.getElementById('closeModal');
-        closeVideoButton.addEventListener('click', closeIntroVideo);
+    const projects = document.querySelectorAll('.card-project');
+    projects.forEach(project => {
+    project.addEventListener('click', function() {
+
+        // Check if the user has visited the site before
+        const videoIntroStatus = localStorage.getItem('visited');
+
+
+        if(videoIntroStatus){ //check if visited exists or not
+            
+            window.location.href = 'https://github.com/techgirlshub/TechGirlsHub-Website';
+        }
+        else {
+                         
+            localStorage.setItem('visited', 'true');
+            const videoModal = new bootstrap.Modal(document.getElementById('videoModal'), {
+                backdrop: 'static', // This prevents closing the modal when clicking on the backdrop
+                keyboard: false // Prevents closing the modal with the keyboard (Esc key)
+            });
+            const video = document.getElementById('introVideo');
+            
+            // Reset video to the beginning when opening modal
+            video.currentTime = 0;
+            video.play();
+
+            // Show the modal
+            videoModal.show();
+
+            // Ensure video ends
+            video.addEventListener('ended', function() {
+                // Redirect to the landing page
+                window.location.href = 'https://github.com/techgirlshub/TechGirlsHub-Website';
+            }, { once: true }); // Using `once` to ensure it only runs once
+        }
+    });
+});
 }
 
-// Show the intro video modal
-function showIntroVideo(url) {
-    if (videoShown) return;
+handleOnclickRedirect();
 
-    const modal = document.getElementById('introVideoModal');
-    if (modal) {
-        modal.classList.remove('hidden');
-        videoShown = true; 
-        redirectUrl = url;
-        
-        // Add a "Continue to Project" button
-        const videoContent = modal.querySelector('.video-content');
-        if (!videoContent.querySelector('.continue-btn')) {
-            const continueBtn = document.createElement('button');
-            continueBtn.className = 'btn continue-btn';
-            continueBtn.textContent = 'Continue to Project';
-            continueBtn.onclick = handleRedirect;
-            videoContent.appendChild(continueBtn);
-        }
-        
-        // Reinitialize the player each time we show the video
-        if (player) {
-            player.destroy();
-            player = null;
-        }
-        initializePlayer();
-    } 
-}
+const dismissModal = () => {
 
-// Update the player initialization
-function initializePlayer() {
-    const videoId = 'Fm9pd648vH4';
-    
-    // Create a new iframe element
-    const iframe = document.createElement('iframe');
-    iframe.id = 'youtubePlayer';
-    iframe.width = '560';
-    iframe.height = '315';
-    
-    // Replace any existing player
-    const container = document.querySelector('.video-container');
-    container.innerHTML = '';
-    container.appendChild(iframe);
-    
-    // Initialize new player with autoplay explicitly set to 0
-    player = new YT.Player('youtubePlayer', {
-        height: '315',
-        width: '560',
-        videoId: videoId,
-        playerVars: {
-            'autoplay': 0,  // This ensures no autoplay
-            'controls': 1,
-            'rel': 0,
-            'playsinline': 1,
-            'mute': 0       // Ensure the video isn't muted
-        },
-        events: {
-            'onStateChange': onPlayerStateChange
-        }
+    const closeModal = document.querySelector('.dismiss-btn');
+    closeModal.addEventListener('click', function (){
+        window.location.href = 'https://github.com/techgirlshub/TechGirlsHub-Website';
     });
 }
 
-// This function is triggered when the player's state changes
-function onPlayerStateChange(event) {
-    if (event.data === YT.PlayerState.ENDED && redirectUrl) {
-        window.location.href = redirectUrl;
-    }
-}
+dismissModal();
 
-// Update close video function to handle redirect separately
-function closeIntroVideo() {
-    const modal = document.getElementById('introVideoModal');
-    modal.classList.add('hidden');
-    player?.stopVideo(); // Stop video when modal is closed
-}
-
-// Add this new function to handle the redirect button click
-function handleRedirect() {
-    isRedirecting = true;
-    closeIntroVideo();
-}
-
-// Set up event listeners on project links
-function setupProjectLinks() {
-    const projectLinks = document.querySelectorAll('.project-link');
-
-    projectLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            const url = this.getAttribute('href');
-
-            if (!videoShown) {
-                showIntroVideo(url);
-            } else {
-                window.location.href = url;
-            }
-        });
-    });
-}
-
-// Call this to initialize the necessary event listeners
-function init() {
-    setupVideoHandlers();
-    setupProjectLinks();
-}
-
-// Run initialization
-init();
-
-// Add this function to handle form submission
-function sendEmail(e) {
+// Add event listener to the contact form
+document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
     // Show loading state
-    const submitButton = document.querySelector('.submit-btn');
+    const submitButton = this.querySelector('.submit-btn');
     const originalText = submitButton.textContent;
     submitButton.textContent = 'Sending...';
     submitButton.disabled = true;
 
     // Get form data
-    const formData = new FormData(document.getElementById('contactForm'));
+    const formData = new FormData(this);
 
     // Send form data using fetch
     fetch('process_form.php', {
@@ -225,7 +130,7 @@ function sendEmail(e) {
     .then(data => {
         if (data.status === 'success') {
             alert('Thank you! Your message has been sent successfully.');
-            document.getElementById('contactForm').reset();
+            this.reset();
         } else {
             alert(data.message || 'Something went wrong. Please try again later.');
         }
@@ -239,12 +144,7 @@ function sendEmail(e) {
         submitButton.textContent = originalText;
         submitButton.disabled = false;
     });
-
-    return false;
-}
-
-// Add event listener to the form
-document.getElementById('contactForm').addEventListener('submit', sendEmail);
+});
 
 // Add newsletter form handling
 document.getElementById('newsletterForm').addEventListener('submit', function(e) {

@@ -458,112 +458,145 @@ body {
 
 /* Projects Section Styles */
 .project-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid layout */
+    display: flex;
+    flex-wrap: wrap;
     gap: 40px;
-    margin-top: 4rem; /* Adjusted margin top */
+    margin-top: 4rem;
     padding-bottom: 50px;
-    justify-content: center; /* Center-align grid items */
+    justify-content: center;
 }
 
-.project {
+.card {
+    flex: 1 1 calc(33.333% - 40px);
+    max-width: 350px;
     padding: 20px;
-    border: #c7253e;
+    border: #c7253e solid 1px;
     border-radius: 20px;
     text-align: center;
-    background-color: #e85c0d; /* Fixed typo */
+    background-color: #e85c0d;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative; /* Allows positioning of the overlay */
-    overflow: hidden; /* Ensures that the description doesn't overflow */
-    transition: transform 0.3s ease; /* Add transition for scaling effect */
+    position: relative; /* Allows positioning of the card-text */
+    overflow: hidden; /* Ensure no overflow */
+    transition: transform 0.3s ease;
 }
 
-/* Animation for project cards */
-.project:hover {
-    transform: scale(1.05); /* Slightly enlarge the card on hover */
+.card:hover {
+    transform: scale(1.05);
 }
 
-/* Hide the description initially */
-.project-description {
-    display: none; /* Start hidden */
-    position: absolute; /* Position above buttons */
-    bottom: 80px; /* Adjust this value to move it above the buttons */
-    left: 0;
-    right: 0;
-    background: #800080; /* Background color for readability */
-    color: white; /* Text color for the description */
-    padding: 10px;
-    border-radius: 5px; /* Rounded corners */
-    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition for opacity and scale */
-    opacity: 0; /* Start hidden */
-    transform: translateY(10px); /* Start slightly lower */
-}
-
-/* Show the description on hover */
-.project:hover .project-description {
-    display: block; /* Show the description */
-    opacity: 1; /* Make it visible */
-    transform: translateY(0); /* Move it up into view */
-}
-
-.project img {
+/* Styling for card image */
+.card-img-top {
     border-radius: 30px;
     margin-bottom: 1rem;
-    width: 100%; /* Makes images responsive */
+    width: 100%;
     height: auto;
 }
 
+/* Card titles */
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+/* Pop-up for card text */
+.card-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%) scale(0); /* Start hidden and scaled down */
+    width: 90%; /* Adjust width as needed */
+    background: #800080;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0; /* Start hidden */
+    z-index: 10; /* Ensure it appears above other elements */
+    text-align: center;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Show the card text on hover */
+.card:hover .card-text {
+    opacity: 1; /* Make it visible */
+    transform: translate(-50%, -50%) scale(1); /* Reset to normal scale */
+}
+
+/* Button wrapper for alignment */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Button Styles */
+.btn {
+    background-color: #c7253e;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    min-width: 120px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #c7253e;
+}
+
+.btn-secondary {
+    background-color: #800080;
+}
+
+.btn:hover {
+    background-color: gray;
+    transform: translateY(-2px);
+}
+
+/* Section title styling */
 #projects h1 {
     font-size: 2rem;
     color: #ffffff;
     margin: 20px 0;
 }
 
-.project h3 {
-    font-size: 1.5rem; /* Font size for project titles */
-    font-weight: bold;
-    margin-bottom: 1rem; /* Space below project titles */
-    color: #ffffff; /* Text color for project titles */
-}
-
-.button-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
-    margin-top: 15px;
-}
-
-/* Button Styles */
-.btn {
-    background-color: #c7253e; /* Primary button color */
+#projects h2 {
+    font-size: 1.8rem;
     color: white;
-    padding: 10px 20px; /* Adjusted padding for consistency */
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition on hover */
-    min-width: 120px; /* Ensure minimum button width */
-    text-align: center;
-    cursor: pointer;
 }
 
-.btn:hover {
-    background-color: #800080; /* Darker shade on hover */
-    transform: translateY(-2px);
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 calc(50% - 40px);
+    }
+
+    .card-text {
+        right: auto; /* Reset positioning */
+        left: 100%; /* Pop out on the left for smaller screens */
+    }
 }
 
-/* Mobile responsiveness for buttons */
 @media (max-width: 480px) {
-    .button-wrapper {
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
+    .card {
+        flex: 1 1 100%;
     }
 
     .btn {
         width: 100%;
-        max-width: 200px;
         padding: 8px 16px;
+    }
+
+    .card-text {
+        width: 200px;
     }
 }
 
