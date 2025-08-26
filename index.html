@@ -289,20 +289,23 @@
 
 <!-- Intro Video Section -->
 <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="videoModalLabel">Introduction Video</h5>
-                <button type="button" class="btn-close dismiss-btn" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <video id="introVideo" autoplay controls>
-                    <source src="images/IntroVid.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="videoModalLabel">Introduction Video</h5>
+        <!-- Bootstrap 4 uses data-dismiss, not data-bs-dismiss -->
+        <button type="button" class="close dismiss-btn" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <video id="introVideo" controls>
+          <source src="images/IntroVid.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </div>
+  </div>
 </div>
 
     <script src="script.js"></script>
