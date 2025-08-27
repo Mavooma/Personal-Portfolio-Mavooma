@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Portfolio + video logic
     handleOnclickRedirect();
+
+    // ✅ Auto-show intro video modal on first visit
+    autoShowIntroVideo();
 });
 
 // Loader
@@ -53,43 +56,4 @@ function setupScrollAnimation() {
     }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
     faders.forEach(fader => appearOnScroll.observe(fader));
-}
-
-// Portfolio click + intro video modal
-function handleOnclickRedirect() {
-    const projectLinks = document.querySelectorAll('.card-project, .card-project-demo'); // both buttons
-    const videoModalEl = document.getElementById('videoModal');
-    const videoModal = new bootstrap.Modal(videoModalEl, {
-        backdrop: 'static',
-        keyboard: false
-    });
-    const video = document.getElementById('introVideo');
-    const closeBtn = document.querySelector('.dismiss-btn');
-
-    projectLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetUrl = this.href;
-
-            const visited = localStorage.getItem('visited');
-
-            if (visited) {
-                window.location.href = targetUrl;
-            } else {
-                localStorage.setItem('visited', 'true');
-
-                video.currentTime = 0;
-                video.play();
-                videoModal.show();
-
-                video.addEventListener('ended', () => {
-                    window.location.href = targetUrl;
-                }, { once: true });
-
-                closeBtn.addEventListener('click', () => {
-                    window.location.href = targetUrl;
-                }, { once: true });
-            }
-        });
-    });
 }
