@@ -392,6 +392,102 @@ body {
     border-radius: 4px;
 }
 
+/* --- Container --- */
+.chat-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  color: #fff;
+  font-family: "Inter", sans-serif;
+}
+
+.chat-container h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+/* --- Chat Window --- */
+.chat-window {
+  background: rgba(255,255,255,0.05);
+  border-radius: 1rem;
+  padding: 1rem;
+  height: 250px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+/* --- Bubbles --- */
+.message {
+  max-width: 75%;
+  padding: 0.8rem 1rem;
+  border-radius: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.message.user {
+  align-self: flex-end;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+.message.bot {
+  align-self: flex-start;
+  background: linear-gradient(135deg, #a855f7, #ec4899, #f97316);
+  color: #fff;
+}
+
+/* --- Input Form --- */
+.chat-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chat-form input {
+  flex: 1;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 1rem;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.chat-form input:focus {
+  outline: 2px solid #a855f7;
+}
+
+.chat-form button {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #a855f7, #ec4899, #f97316);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.chat-form button:hover {
+  opacity: 0.9;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* Education and Experience Section */
 .education-experience-section {
     padding: 50px 20px;

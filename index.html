@@ -96,13 +96,22 @@
 
         <hr class="section-divider" />
 
-        <section id="ask-vuyelwa" style="max-width:600px; margin:2rem auto; padding:1rem; background:#1a1a1d; border-radius:1rem; color:#f6f7fb;">
-  <h2 style="text-align:center;">🤖 Ask Anything About Vuyelwa Mavuma</h2>
-  <form id="askForm" style="margin-top:1rem;">
-    <input type="text" id="questionInput" placeholder="Type your question here..." style="width:100%; padding:0.8rem; border:none; border-radius:0.5rem; margin-bottom:1rem; background:#2a2a2d; color:#f6f7fb;" required>
-    <button type="submit" style="width:100%; padding:0.8rem; background:#6c63ff; color:white; font-weight:bold; border:none; border-radius:0.5rem; cursor:pointer;">Ask</button>
+        <section id="ask-vuyelwa" class="chat-container">
+  <h2>🤖 Ask Anything About Vuyelwa Mavuma</h2>
+
+  <div id="chatWindow" class="chat-window">
+    <!-- Messages will appear here -->
+  </div>
+
+  <form id="askForm" class="chat-form">
+    <input 
+      type="text" 
+      id="questionInput" 
+      placeholder="Type your question..." 
+      required 
+    />
+    <button type="submit">Send</button>
   </form>
-  <div id="answerBox" style="margin-top:1rem; padding:1rem; background:#2a2a2d; border-radius:0.5rem; display:none;"></div>
 </section>
 
 <hr class="section-divider" />

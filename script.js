@@ -136,21 +136,38 @@ if (newsletterForm) {
 }
 
 const qaDatabase = {
-    "what is her favorite color?": "💜 My favorite color is purple.",
-    "what is her favorite programming language": "💻 I really enjoy working with JavaScript and React.",
-    "what is she currently studying": "📚 I am currently focusing on front-end development and building responsive projects.",
-    "who is vuyelwa mavuma": "🙋🏽‍♀️ Vuyelwa Mavuma is a passionate front-end developer showcasing her portfolio here."
-  };
+  "what is her favorite color?": "💜 My favorite color is purple.",
+  "what is her favorite programming language": "💻 I really enjoy working with JavaScript and React.",
+  "what is she currently studying": "📚 I’m currently focusing on front-end development and responsive design.",
+  "who is vuyelwa mavuma": "🙋🏽‍♀️ Vuyelwa Mavuma is a passionate front-end developer showcasing her portfolio here."
+};
 
-  const form = document.getElementById("askForm");
-  const input = document.getElementById("questionInput");
-  const answerBox = document.getElementById("answerBox");
+const chatWindow = document.getElementById("chatWindow");
+const askForm = document.getElementById("askForm");
+const questionInput = document.getElementById("questionInput");
 
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-    const question = input.value.toLowerCase().trim();
-    const answer = qaDatabase[question] || "❓ Sorry, I don’t know that yet!";
-    answerBox.textContent = answer;
-    answerBox.style.display = "block";
-    input.value = "";
-  });
+askForm.addEventListener("submit", function(e) {
+  e.preventDefault();
+  const question = questionInput.value.trim();
+  if (!question) return;
+
+  // Add user message
+  addMessage(question, "user");
+
+  // Simulate bot "typing..."
+  setTimeout(() => {
+    const answer =
+      qaDatabase[question.toLowerCase()] || "❓ Sorry, I don’t know that yet!";
+    addMessage(answer, "bot");
+  }, 600);
+
+  questionInput.value = "";
+});
+
+function addMessage(text, sender) {
+  const message = document.createElement("div");
+  message.classList.add("message", sender);
+  message.textContent = text;
+  chatWindow.appendChild(message);
+  chatWindow.scrollTop = chatWindow.scrollHeight; // auto-scroll
+}
