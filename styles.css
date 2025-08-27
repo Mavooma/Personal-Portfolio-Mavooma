@@ -387,7 +387,7 @@ body {
 }
 
 .section-image {
-    width: 100%;
+    width: 65%;
     max-width: 450px;
     border-radius: 4px;
 }
@@ -500,31 +500,53 @@ body {
     color: #ffffff;
 }
 
-/* Pop-up for card text */
+/* Base styling */
 .card-text {
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%) scale(0); /* Start hidden and scaled down */
-    width: 90%; /* Adjust width as needed */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 90%;
     background: #800080;
     color: white;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    opacity: 0; /* Start hidden */
-    z-index: 10; /* Ensure it appears above other elements */
+    opacity: 0;
+    z-index: 10;
     text-align: center;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Show the card text on hover */
+/* Hover effect (desktop) */
 .card:hover .card-text {
-    opacity: 1; /* Make it visible */
-    transform: translate(-50%, -50%) scale(1); /* Reset to normal scale */
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* When JS adds "active" class (mobile toggle) */
+.card.active .card-text {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Desktop hover effect */
+@media (min-width: 769px) {
+  .card:hover .card-text {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Mobile toggle via JS */
+@media (max-width: 768px) {
+  .card.active .card-text {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 /* Button wrapper for alignment */
@@ -580,8 +602,21 @@ body {
     }
 
     .card-text {
-        right: auto; /* Reset positioning */
-        left: 100%; /* Pop out on the left for smaller screens */
+      top: auto;
+      bottom: 100%; /* Place it above the card instead */
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      width: 90%;
+  }
+
+  .card.active .card-text {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+  }
+
+    .card:hover .card-text {
+        opacity: 0; /* Disable hover effect on mobile */
+        transform: translateX(-50%) scale(0);
     }
 }
 
@@ -1104,4 +1139,29 @@ body {
     to {
         transform: rotate(360deg);
     }
+}
+
+/* Touch-device overrides: show on tap, not on hover */
+@media (hover: none) and (pointer: coarse) {
+  /* Put tooltip ABOVE the card on touch devices */
+  .card-text {
+    top: auto;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    opacity: 0;
+    width: 90%;
+  }
+
+  /* Disable hover on touch devices */
+  .card:hover .card-text {
+    opacity: 0;
+    transform: translateX(-50%) scale(0);
+  }
+
+  /* Shown when JS toggles .active */
+  .card.active .card-text {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
 }

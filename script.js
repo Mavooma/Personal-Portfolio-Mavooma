@@ -16,6 +16,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ✅ Auto-show intro video modal on first visit
     autoShowIntroVideo();
+
+    // Mobile card popup
+    const cards = document.querySelectorAll('.card');
+    const isTouch = window.matchMedia('(hover: none)').matches;
+
+    if (isTouch) {
+        cards.forEach(card => {
+            card.addEventListener('click', function (e) {
+                // Don’t toggle if the user tapped a button/link
+                if (e.target.closest('.btn, a, button')) return;
+
+                const wasActive = card.classList.contains('active');
+                cards.forEach(c => c.classList.remove('active'));
+                if (!wasActive) card.classList.add('active');
+            });
+        });
+
+        // Tap outside closes popup
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.card')) {
+                cards.forEach(c => c.classList.remove('active'));
+            }
+        }, { passive: true });
+    }
 });
 
 // Loader
