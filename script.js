@@ -6,10 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Navbar toggle
     const toggleButton = document.querySelector('.navbar-toggler');
     const navbarLinks = document.querySelector('.navbar-links');
-    toggleButton.addEventListener('click', () => {
-        navbarLinks.classList.toggle('collapsed');
-        navbarLinks.classList.toggle('expanded');
-    });
+
+    if (toggleButton && navbarLinks) {
+        toggleButton.addEventListener('click', () => {
+            navbarLinks.classList.toggle('collapsed');
+            navbarLinks.classList.toggle('expanded');
+        });
+    }
 
     // Portfolio + video logic
     handleOnclickRedirect();
@@ -23,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (isTouch) {
         cards.forEach(card => {
-            card.addEventListener('click', function (e) {
+            card.addEventListener('click', function(e) {
                 // Don’t toggle if the user tapped a button/link
                 if (e.target.closest('.btn, a, button')) return;
 
@@ -34,15 +37,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Tap outside closes popup
-        document.addEventListener('click', function (e) {
-            if (!e.target.closest('.card')) {
-                cards.forEach(c => c.classList.remove('active'));
-            }
-        }, { passive: true });
+        document.addEventListener(
+            'click',
+            function(e) {
+                if (!e.target.closest('.card')) {
+                    cards.forEach(c => c.classList.remove('active'));
+                }
+            },
+            { passive: true }
+        );
     }
 });
 
-// Loader
+/* -----------------------------
+   Loader
+----------------------------- */
 function setupLoader() {
     setTimeout(() => {
         const loader = document.querySelector('.loader');
@@ -52,32 +61,96 @@ function setupLoader() {
     }, 5000);
 }
 
-// Toggle names
+/* -----------------------------
+   Toggle names
+----------------------------- */
 function setupNameToggle() {
     const nameElement = document.querySelector('.name');
     if (nameElement) {
         const names = ['Vuyelwa', 'Mavooma'];
         let index = 0;
+
         function toggleName() {
             nameElement.textContent = names[index];
             index = (index + 1) % names.length;
         }
+
         toggleName();
         setInterval(toggleName, 2000);
     }
 }
 
-// Scroll animation
+/* -----------------------------
+   Scroll animation
+----------------------------- */
 function setupScrollAnimation() {
     const faders = document.querySelectorAll('.fade-in');
-    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+    const appearOnScroll = new IntersectionObserver(
+        function(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
 
     faders.forEach(fader => appearOnScroll.observe(fader));
 }
+
+/* -----------------------------
+   Dummy Form Logic
+----------------------------- */
+// Helper: show + auto-hide success messages
+function showSuccessMessage(element) {
+    element.style.display = 'block';
+    setTimeout(() => {
+        element.style.display = 'none';
+    }, 3000); // hides after 3 seconds
+}
+
+// Contact form
+const contactForm = document.getElementById('contactForm');
+const contactSuccess = document.getElementById('contactSuccess');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        showSuccessMessage(contactSuccess);
+        contactForm.reset();
+    });
+}
+
+// Newsletter form
+const newsletterForm = document.getElementById('newsletterForm');
+const newsletterSuccess = document.getElementById('newsletterSuccess');
+
+if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        showSuccessMessage(newsletterSuccess);
+        newsletterForm.reset();
+    });
+}
+
+const qaDatabase = {
+    "what is her favorite color?": "💜 My favorite color is purple.",
+    "what is her favorite programming language": "💻 I really enjoy working with JavaScript and React.",
+    "what is she currently studying": "📚 I am currently focusing on front-end development and building responsive projects.",
+    "who is vuyelwa mavuma": "🙋🏽‍♀️ Vuyelwa Mavuma is a passionate front-end developer showcasing her portfolio here."
+  };
+
+  const form = document.getElementById("askForm");
+  const input = document.getElementById("questionInput");
+  const answerBox = document.getElementById("answerBox");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const question = input.value.toLowerCase().trim();
+    const answer = qaDatabase[question] || "❓ Sorry, I don’t know that yet!";
+    answerBox.textContent = answer;
+    answerBox.style.display = "block";
+    input.value = "";
+  });
