@@ -552,183 +552,132 @@ body {
     margin-right: 15px;
 }
 
-/* Projects Section Styles */
-.project-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    margin-top: 4rem;
-    padding-bottom: 50px;
-    justify-content: center;
+/* Portfolio Section */
+.portfolio {
+  padding: 3rem 1rem;
+  color: #f6f7fb;
 }
 
-.card {
-    flex: 1 1 calc(33.333% - 40px);
-    max-width: 350px;
-    padding: 20px;
-    border: #c7253e solid 1px;
-    border-radius: 20px;
-    text-align: center;
-    background-color: #e85c0d;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative; /* Allows positioning of the card-text */
-    overflow: hidden; /* Ensure no overflow */
-    transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}
-
-/* Styling for card image */
-.card-img-top {
-    border-radius: 30px;
-    margin-bottom: 1rem;
-    width: 100%;
-    height: auto;
-}
-
-/* Card titles */
-.card-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    color: #ffffff;
-}
-
-/* Base styling */
-.card-text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    width: 90%;
-    background: #800080;
-    color: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    z-index: 10;
-    text-align: center;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* Hover effect (desktop) */
-.card:hover .card-text {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-/* When JS adds "active" class (mobile toggle) */
-.card.active .card-text {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-/* Desktop hover effect */
-@media (min-width: 769px) {
-  .card:hover .card-text {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-/* Mobile toggle via JS */
-@media (max-width: 768px) {
-  .card.active .card-text {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-/* Button wrapper for alignment */
-.card-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-/* Button Styles */
-.btn {
-    background-color: #c7253e;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    min-width: 120px;
-    text-align: center;
-    cursor: pointer;
-}
-
-.btn-primary {
-    background-color: #c7253e;
-}
-
-.btn-secondary {
-    background-color: #800080;
-}
-
-.btn:hover {
-    background-color: gray;
-    transform: translateY(-2px);
-}
-
-/* Section title styling */
-#projects h1 {
+.portfolio h2,
+.portfolio h1 {
+  text-align: center;
     font-size: 2rem;
-    color: #ffffff;
-    margin: 20px 0;
-}
-
-#projects h2 {
-    font-size: 1.8rem;
     color: white;
+  margin-bottom: 2rem;
 }
 
-/* Responsive adjustments */
+#projects {
+    background-color: #c62d70;
+}
+
+/* Card container */
+.card {
+  background: #e85c0d; 
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+/* Card hover effect (optional subtle zoom) */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Image */
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Card body */
+.card-body {
+  padding: 1.2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Title (h5 in your cards) */
+.card-title,
+.card-body h5 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  color: white; /* pinkish accent */
+  text-transform: capitalize;
+}
+
+/* Title */
+.card-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  color: #ff7eb6; /* pinkish accent */
+}
+
+/* Description text */
+.card-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  color: #e0e0e0;
+}
+
+/* Buttons */
+.card-project,
+.card-project-demo {
+  display: inline-block;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.card-project {
+  background: #c7253e;
+  color: #fff;
+}
+
+.card-project:hover {
+  background: #ff5790;
+  transform: translateY(-2px);
+}
+
+.card-project-demo {
+  background: #800080;
+  color: white;
+}
+
+.card-project-demo:hover {
+  background: #ff5790;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-    .card {
-        flex: 1 1 calc(50% - 40px);
-    }
-
-    .card-text {
-      top: auto;
-      bottom: 100%; /* Place it above the card instead */
-      left: 50%;
-      transform: translateX(-50%) scale(0);
-      width: 90%;
+  .card-img-top {
+    height: 180px;
   }
 
-  .card.active .card-text {
-      opacity: 1;
-      transform: translateX(-50%) scale(1);
+  .card-title {
+    font-size: 1rem;
   }
 
-    .card:hover .card-text {
-        opacity: 0; /* Disable hover effect on mobile */
-        transform: translateX(-50%) scale(0);
-    }
+  .card-text {
+    font-size: 0.9rem;
+  }
 }
-
-@media (max-width: 480px) {
-    .card {
-        flex: 1 1 100%;
-    }
-
-    .btn {
-        width: 100%;
-        padding: 8px 16px;
-    }
-
-    .card-text {
-        width: 200px;
-    }
+.project-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 /* Newsletter Section */
@@ -1191,27 +1140,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* Update the close button styles */
-.close-btn {
-    margin-top: 20px;
-    padding: 8px 16px;
-    font-size: 1em;
-    color: #fff;
-    background-color: #e85c0d;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 10;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    transition: background-color 0.3s ease;
-}
-
-.close-btn:hover {
-    background-color: #c7253e;
-}
-
 /* Add these styles to your existing CSS */
 .submit-btn:disabled {
     background-color: #cccccc;
@@ -1249,15 +1177,21 @@ body {
     width: 90%;
   }
 
-  /* Disable hover on touch devices */
-  .card:hover .card-text {
-    opacity: 0;
-    transform: translateX(-50%) scale(0);
-  }
-
   /* Shown when JS toggles .active */
   .card.active .card-text {
     opacity: 1;
     transform: translateX(-50%) scale(1);
   }
+}
+
+/* Global Fade-In Up Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
