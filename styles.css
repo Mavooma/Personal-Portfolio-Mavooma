@@ -710,7 +710,7 @@ body {
     align-items: center;
   }
   
-  .newsletter-form input[type="name"],
+  .newsletter-form input[type="text"],
   .newsletter-form input[type="email"] {
     padding: 0.8rem;
     width: 100%;
@@ -734,16 +734,18 @@ body {
     margin-right: 0.5rem;
   }
   
-  .newsletter-form button {
-    background-color: #c7253e; /* Pink button */
-    color: #ffffff;
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
+.newsletter-form button {
+  display: block;  
+  margin: 0 auto 1rem auto; 
+  background-color: #c7253e; 
+  color: #ffffff;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
   
   .newsletter-form button:hover {
     background-color: #c62d70;
@@ -1185,38 +1187,69 @@ body {
 }
 
 /* Newsletter feedback messages */
-/* Floating Newsletter Message Box */
-#newsletterMessage {
-  position: fixed;
-  top: 80px; /* slightly lower than contact form box */
-  right: -400px; /* start hidden */
-  padding: 15px 25px;
-  border-radius: 10px;
+.newsletter-success,
+.newsletter-error {
+  display: none;         /* hidden initially */
+  margin-top: 10px;      /* space below the button */
+  padding: 10px 15px;
+  border-radius: 8px;
   font-weight: bold;
-  font-size: 1rem;
-  z-index: 9999;
+  font-size: 0.95rem;
   color: white;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  transition: right 0.5s ease-in-out, opacity 0.5s ease;
-  opacity: 0;
+  text-align: center;
+  width: fit-content;    /* shrink to content width */
 }
 
 /* Success */
-#newsletterMessage.success {
+.newsletter-success {
   background-color: #e85c0d; /* orange/red from theme */
   border: 2px solid white;
 }
 
 /* Error */
-#newsletterMessage.error {
+.newsletter-error {
   background-color: #800080; /* purple */
   border: 2px solid #ff7eb6; /* pink accent */
 }
 
 /* Show state */
-#newsletterMessage.show {
+.newsletter-success.show,
+.newsletter-error.show {
+  display: block;        /* show when JS toggles 'show' */
+}
+
+.newsletter-message {
+  position: fixed;
+  top: 80px;             /* pop-up from top */
   right: 20px;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  color: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  opacity: 0;
+  z-index: 9999;
+  transition: opacity 0.5s, transform 0.5s;
+  transform: translateY(-20px);
+}
+
+/* Success */
+.newsletter-message.success {
+  background-color: #e85c0d;
+  border: 2px solid white;
+}
+
+/* Error */
+.newsletter-message.error {
+  background-color: #800080;
+  border: 2px solid #ff7eb6;
+}
+
+/* Show state */
+.newsletter-message.show {
   opacity: 1;
+  transform: translateY(0);
 }
 
 /* Floating Message Box */
