@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isTouch) {
         cards.forEach(card => {
             card.addEventListener('click', function(e) {
-                // Don’t toggle if the user tapped a button/link
                 if (e.target.closest('.btn, a, button')) return;
 
                 const wasActive = card.classList.contains('active');
@@ -36,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // Tap outside closes popup
         document.addEventListener(
             'click',
             function(e) {
@@ -49,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-/* Loader */
+// Loader
 function setupLoader() {
     setTimeout(() => {
         const loader = document.querySelector('.loader');
@@ -59,7 +57,7 @@ function setupLoader() {
     }, 5000);
 }
 
-/* Toggle names */
+// Toggle names
 function setupNameToggle() {
     const nameElement = document.querySelector('.name');
     if (nameElement) {
@@ -76,7 +74,7 @@ function setupNameToggle() {
     }
 }
 
-/* Scroll animation */
+// Scroll animation
 function setupScrollAnimation() {
     const faders = document.querySelectorAll('.fade-in');
     const appearOnScroll = new IntersectionObserver(
@@ -94,39 +92,31 @@ function setupScrollAnimation() {
     faders.forEach(fader => appearOnScroll.observe(fader));
 }
 
-/*  Dummy Form Logic */
-// Helper: show + auto-hide success messages
-function showSuccessMessage(element) {
-    element.style.display = 'block';
+// Newsletter Sign-Up 
+function signUpNewsletter() {
+  const form = document.getElementById("newsletterForm");
+  const messageBox = document.getElementById("newsletterMessage");
+
+  try {
+    messageBox.textContent = "🎉 You’ve been signed up for the newsletter!";
+    messageBox.className = "success show";
+
+    form.reset();
+
     setTimeout(() => {
-        element.style.display = 'none';
-    }, 3000); // hides after 3 seconds
+      messageBox.classList.remove("show");
+    }, 3000);
+  } catch (error) {
+    messageBox.textContent = "❌ Something went wrong. Please try again.";
+    messageBox.className = "error show";
+
+    setTimeout(() => {
+      messageBox.classList.remove("show");
+    }, 3000);
+  }
 }
 
-// Contact form
-const contactForm = document.getElementById('contactForm');
-const contactSuccess = document.getElementById('contactSuccess');
-
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        showSuccessMessage(contactSuccess);
-        contactForm.reset();
-    });
-}
-
-// Newsletter form
-const newsletterForm = document.getElementById('newsletterForm');
-const newsletterSuccess = document.getElementById('newsletterSuccess');
-
-if (newsletterForm) {
-    newsletterForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        showSuccessMessage(newsletterSuccess);
-        newsletterForm.reset();
-    });
-}
-
+// Simple Q&A Bot
 const qaDatabase = {
   "what is her favorite color": "💜 My favorite color is purple.",
   "what is her favorite programming language": "💻 I really enjoy working with JavaScript and React.",
@@ -153,60 +143,48 @@ const chatWindow = document.getElementById("chatWindow");
 const askForm = document.getElementById("askForm");
 const questionInput = document.getElementById("questionInput");
 
-// Function to handle bot response naturally
 function FunctionKitBotResponse(input) {
-  const cleanedInput = input.trim().toLowerCase().replace(/\?$/, ""); // Remove trailing question mark
-
-  // First, try exact match
+  const cleanedInput = input.trim().toLowerCase().replace(/\?$/, "");
   if (qaDatabase[cleanedInput]) {
     return qaDatabase[cleanedInput];
   }
-
-  // Optional: keyword-based matching
   for (let key in qaDatabase) {
     if (cleanedInput.includes(key)) {
       return qaDatabase[key];
     }
   }
-
   return "❓ Sorry, I don’t know that yet!";
 }
 
-askForm.addEventListener("submit", function(e) {
-  e.preventDefault();
-  const question = questionInput.value.trim();
-  if (!question) return;
-
-  // Add user message
-  addMessage(question, "user");
-
-  // Simulate bot "typing..."
-  setTimeout(() => {
-    const answer = FunctionKitBotResponse(question);
-    addMessage(answer, "bot");
-  }, 600);
-
-  questionInput.value = "";
-});
+if (askForm) {
+  askForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const question = questionInput.value.trim();
+    if (!question) return;
+    addMessage(question, "user");
+    setTimeout(() => {
+      const answer = FunctionKitBotResponse(question);
+      addMessage(answer, "bot");
+    }, 600);
+    questionInput.value = "";
+  });
+}
 
 function addMessage(text, sender) {
   const message = document.createElement("div");
   message.classList.add("message", sender);
   message.textContent = text;
   chatWindow.appendChild(message);
-  chatWindow.scrollTop = chatWindow.scrollHeight; // auto-scroll
+  chatWindow.scrollTop = chatWindow.scrollHeight;
 }
 
+// Reveal animation
 document.addEventListener("DOMContentLoaded", function () {
-  // Select all major content blocks
   const revealElements = document.querySelectorAll(
     "section, .card, .text-content, .image-content, article, img, h2, h3, p"
   );
-
-  // Add the 'reveal' class to each
   revealElements.forEach(el => el.classList.add("reveal"));
 
-  // Intersection Observer
   const appearOnScroll = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -218,3 +196,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
   revealElements.forEach(el => appearOnScroll.observe(el));
 });
+
+// EmailJS Contact Form
+function sendMail() {
+  let parms = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    subject: document.getElementById("subject").value,
+    message: document.getElementById("message").value
+  };
+
+  emailjs.send("service_bqdg28b", "template_j6b6qvi", parms)
+    .then(() => {
+      showMessage("success", "✅ Message sent successfully!");
+      document.getElementById("contactForm").reset();
+    })
+    .catch(() => {
+      showMessage("error", "❌ Failed to send message. Please try again.");
+    });
+}
+
+// Shared message handler 
+function showMessage(type, text) {
+  const msgBox = document.getElementById("formMessage");
+  if (!msgBox) return;
+  msgBox.textContent = text;
+  msgBox.className = type + " show"; // "success show" or "error show"
+
+  // Hide after 4 seconds
+  setTimeout(() => {
+    msgBox.classList.remove("show");
+  }, 4000);
+}

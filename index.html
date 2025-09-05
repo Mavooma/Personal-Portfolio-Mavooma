@@ -24,12 +24,16 @@
   
     <link rel="stylesheet" href="styles.css" />
     <script src="https://www.youtube.com/iframe_api"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-       (function() {
-          emailjs.init("YOUR_PUBLIC_KEY"); // Add your EmailJS public key here
-       })();
-    </script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "FwfJRAwL0PY_vo3gt",
+      });
+   })();
+</script>
 
 </head>
 <body>
@@ -210,48 +214,105 @@
         
         <hr class="section-divider" />
 
-        <div class="newsletter-section">
-            <h2 class="highlighted-name">Stay up-to-date with my latest projects</h2>
-            <p>Get notified about my newest projects, resources, and insights to support my Software Engineering journey.</p>
-            
-            <form class="newsletter-form" id="newsletterForm">
-                <input type="name" name="name" placeholder="Name*" required>
-                <input type="email" name="email" placeholder="Email*" required>
-                <label>
-                    <input type="checkbox" required>
-                    <span>By entering your email you agree to receive our newsletter. You can unsubscribe at any time. See our <a href="#">privacy policy</a>.</span>
-                </label>
-                <button type="submit" class="submit-btn">Sign me up</button>
-            </form>
-        </div>
+<div class="newsletter-section">
+  <h2 class="highlighted-name">Stay up-to-date with my latest projects</h2>
+  <p>Get notified about my newest projects, resources, and insights to support my Software Engineering journey.</p>
+  
+  <!--  Updated Newsletter Form -->
+  <form class="newsletter-form" id="newsletterForm">
+    <input type="text" name="name" placeholder="Name*" required>
+    <input type="email" name="email" placeholder="Email*" required>
+    <label>
+      <input type="checkbox" required>
+      <span>
+        By entering your email you agree to receive our newsletter. You can unsubscribe at any time. 
+        See our <a href="#">privacy policy</a>.
+      </span>
+    </label>
+    <button type="button" class="submit-btn" onclick="signUpNewsletter()">Sign me up</button>
+  </form>
+
+  <!--  Success Message -->
+  <p id="newsletterSuccess" class="newsletter-success">
+    🎉 You’ve been signed up for the newsletter!
+  </p>
+
+  <!-- ❌ Error Message -->
+  <p id="newsletterError" class="newsletter-error">
+    ❌ Something went wrong. Please try again.
+  </p>
+</div>
 
         <hr class="section-divider" />
 
-        <!-- Contact Section -->
-        <div class="contact-section">
-            <div class="contact-image">
-                <img src="images/pink.png" alt="Desk Setup" />
-            </div>
-            <div class="contact-form-container">
-                <h1 class="highlighted-name">Let's Work Together!</h1>
-                <h3>Ready to bring your vision to life? Get in touch to start building your next web project today!</h3>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name*" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Your Email*" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="subject" name="subject" placeholder="Subject*" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Your Message*" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
-        </div>
+<!-- Contact Section -->
+<div class="contact-section">
+  <div class="contact-image">
+    <img src="images/pink.png" alt="Desk Setup" />
+  </div>
+
+  <div class="contact-form-container">
+    <h1 class="highlighted-name">Let's Work Together!</h1>
+    <h3>
+      Ready to bring your vision to life? Get in touch to start building your
+      next web project today!
+    </h3>
+
+    <!-- ✅ Updated Contact Form -->
+    <form class="contact-form" id="contactForm">
+      <div class="form-group">
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Your Name*"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Your Email*"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="text"
+          id="subject"
+          name="subject"
+          placeholder="Subject*"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Your Message*"
+          required
+        ></textarea>
+      </div>
+
+      <button type="button" class="submit-btn" onclick="sendMail()">Send Message</button>
+    </form>
+
+    <!-- ✅ Success Message (hidden by default) -->
+    <p id="contactSuccess" style="display: none; color: green; margin-top: 10px;">
+      ✅ Your message has been sent successfully!
+    </p>
+
+    <!-- ❌ Error Message (hidden by default) -->
+    <p id="contactError" style="display: none; color: red; margin-top: 10px;">
+      ❌ Failed to send message. Please try again.
+    </p>
+  </div>
+</div>
 
         <!-- Footer Section -->
     <footer class="footer">
@@ -305,12 +366,17 @@
     </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script type="text/javascript" src="script.js"></script>
 
     <!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+<!-- Floating Message Box for Newsletter -->
+<div id="newsletterMessage"></div>
+
+<!-- Floating Notification -->
+<div id="formMessage"></div>
 </body>
 </html>

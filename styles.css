@@ -1184,6 +1184,75 @@ body {
   }
 }
 
+/* Newsletter feedback messages */
+/* Floating Newsletter Message Box */
+#newsletterMessage {
+  position: fixed;
+  top: 80px; /* slightly lower than contact form box */
+  right: -400px; /* start hidden */
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  z-index: 9999;
+  color: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: right 0.5s ease-in-out, opacity 0.5s ease;
+  opacity: 0;
+}
+
+/* Success */
+#newsletterMessage.success {
+  background-color: #e85c0d; /* orange/red from theme */
+  border: 2px solid white;
+}
+
+/* Error */
+#newsletterMessage.error {
+  background-color: #800080; /* purple */
+  border: 2px solid #ff7eb6; /* pink accent */
+}
+
+/* Show state */
+#newsletterMessage.show {
+  right: 20px;
+  opacity: 1;
+}
+
+/* Floating Message Box */
+#formMessage {
+  position: fixed;
+  top: 20px;
+  right: -400px; /* start off-screen */
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  z-index: 9999;
+  color: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: right 0.5s ease-in-out, opacity 0.5s ease;
+  opacity: 0;
+}
+
+/* Success styling */
+#formMessage.success {
+  background-color: #e85c0d; /* orange/red from your theme */
+  border: 2px solid white;
+}
+
+/* Error styling */
+#formMessage.error {
+  background-color: #800080; /* purple from your theme */
+  border: 2px solid #ff7eb6; /* pink accent */
+}
+
+/* Show state */
+#formMessage.show {
+  right: 20px; /* slide in */
+  opacity: 1;
+}
+
 /* Global Fade-In Up Animation */
 .reveal {
   opacity: 0;
